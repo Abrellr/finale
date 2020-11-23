@@ -18,7 +18,7 @@ export default function LoginForm(props) {
     // prevents the default refresh after submit button has been clicked
     e.preventDefault();
     // Send a request to the server for authentication
-    axios.post('https://my-flix-evagrean.herokuapp.com/login', {
+    axios.post('', {
       Username: username,
       Password: password
     })
@@ -55,7 +55,7 @@ export default function LoginForm(props) {
           <Container className="mt-4">
             <Row className="d-flex align-items-center justify-content-center">
               <span>Don't have an account? Click here to</span>
-              <Link to={`/register`}>
+              <Link to={'/register'}>
                 <Button variant="link" className="sign-up-link btn-lg" type="submit">Sign up</Button>
               </Link>
 

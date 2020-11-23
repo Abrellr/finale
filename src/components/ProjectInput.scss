@@ -2,9 +2,9 @@ $primary-color: #1054FF;
 $secondary-color: #ececec;
 $font-family: 'Alegreya Sans', sans-serif;
 
-.register-container {
-    width: 100%;
-    margin-top: 100px;
+.createProject-form {
+    width: 50vh;
+    margin-top: 10px;
 }
 
 .sign-up-button, 
@@ -37,4 +37,3 @@ $font-family: 'Alegreya Sans', sans-serif;
 .login-link:hover {
   color: lighten( $primary-color, 20% );
 }
-

@@ -32,7 +32,11 @@ function App() {
           <Route path="/login" 
           render={() => (
             <LoginPage />
-          )}/>     
+          )}/> 
+          <Route path="/register" 
+          render={() => (
+            <SignUp />
+          )}/>    
           <Route path="/" 
           render={() => (
             <LandingPage />

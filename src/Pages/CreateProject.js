@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import DateInput from "../components/DateInput.jsx"
+import ProjectInput from "../components/ProjectInput"
 import { Container } from "react-bootstrap";
 import {
   GlobalStyle,
@@ -23,7 +23,7 @@ export default function CreateProject() {
         <Container>
           <MainSection>
             <h3>this is the ProjectDetail</h3>
-            <DateInput />
+            <ProjectInput />
           </MainSection>
         </Container>
         <FooterSection>

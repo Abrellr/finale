@@ -36,8 +36,8 @@ export default function DateInput() {
                 <Form.Control type="text" placeholder="New project name" maxLength="10" pattern="[a-zA-Z0-9]+" value={projectName} onChange={e => setProjectName(e.target.value)} required />
               </Form.Group>
               <Form.Group controlId="formProjectDate">
-                <Form.Label>Project create date</Form.Label>
-                <Form.Control type="date" placeholder="01/01/1980" value={projectDate} onChange={e => setProjectDate(e.target.value)} required />
+                <Form.Label>Create date</Form.Label>
+                <Form.Control type="date" placeholder="dd/mm/yyyy" value={projectDate} onChange={e => setProjectDate(e.target.value)} required />
               </Form.Group>
               <Row className="justify-content-end">
                 <Button className="create-project-button ml-3 mr-3" variant="primary" type="submit" block onClick={handleRegister}>Create new project!</Button>
