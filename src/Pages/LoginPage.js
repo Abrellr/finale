@@ -10,10 +10,10 @@ export default function LoginPage() {
             <GlobalStyle/>
             <Background>
                 <LoginForm />
-                <Route path="/register" 
+                {/* <Route path="/register" 
                 render={() => (
                     <SignUp />
-                )}/> 
+                )}/>  */}
             </Background>
         </>
     )

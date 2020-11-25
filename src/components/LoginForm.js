@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import './LoginForm.scss';
 
 export default function LoginForm(props) {
@@ -18,7 +16,7 @@ export default function LoginForm(props) {
     // prevents the default refresh after submit button has been clicked
     e.preventDefault();
     // Send a request to the server for authentication
-    axios.post('https://my-flix-evagrean.herokuapp.com/login', {
+    axios.post('', {
       Username: username,
       Password: password
     })
@@ -47,7 +45,7 @@ export default function LoginForm(props) {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Enter password" required value={password} onChange={e => setPassword(e.target.value)} />
               </Form.Group>
-              <Row className="justify-content-end">
+              <Row className="justify-content-center">
                 <Button className="login-button mr-3 ml-3" variant="primary" type="submit" block onClick={handleLogin}>Login</Button>
               </Row>
             </Form>
@@ -55,10 +53,9 @@ export default function LoginForm(props) {
           <Container className="mt-4">
             <Row className="d-flex align-items-center justify-content-center">
               <span>Don't have an account? Click here to</span>
-              <Link to={`/register`}>
+              <Link to={'/register'}>
                 <Button variant="link" className="sign-up-link btn-lg" type="submit">Sign up</Button>
               </Link>
-
             </Row>
           </Container>
         </Col>
