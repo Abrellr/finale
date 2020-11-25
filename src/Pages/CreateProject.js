@@ -2,7 +2,6 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import ProjectInput from "../components/ProjectInput"
-import { Container } from "react-bootstrap";
 import {
   GlobalStyle,
   MainSection,
@@ -20,12 +19,9 @@ export default function CreateProject() {
         <NavbarSection>
           <Navigation />
         </NavbarSection>
-        <Container>
           <MainSection>
-            <h3>this is the ProjectDetail</h3>
             <ProjectInput />
           </MainSection>
-        </Container>
         <FooterSection>
           <Footer />
         </FooterSection>

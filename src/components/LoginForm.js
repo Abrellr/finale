@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import './LoginForm.scss';
 
 export default function LoginForm(props) {
@@ -47,7 +45,7 @@ export default function LoginForm(props) {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Enter password" required value={password} onChange={e => setPassword(e.target.value)} />
               </Form.Group>
-              <Row className="justify-content-end">
+              <Row className="justify-content-center">
                 <Button className="login-button mr-3 ml-3" variant="primary" type="submit" block onClick={handleLogin}>Login</Button>
               </Row>
             </Form>
@@ -58,7 +56,6 @@ export default function LoginForm(props) {
               <Link to={'/register'}>
                 <Button variant="link" className="sign-up-link btn-lg" type="submit">Sign up</Button>
               </Link>
-
             </Row>
           </Container>
         </Col>

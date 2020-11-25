@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Container, Row, Col } from 'react-bootstrap';
 import { GlobalStyle, Background } from '../Pages/style.js'
 import './SignUp.scss';
 
@@ -27,7 +25,7 @@ export default function SignUp(props) {
         window.open('/', '_self'); // with '_self' page will open in current tab
       })
       .catch(error => {
-        return alert('Cannot register. Your username must be at least 5 chars long' + error);
+        return alert('Cannot register. Your username must be at least 5 chars long ' + error);
       });
   };
 

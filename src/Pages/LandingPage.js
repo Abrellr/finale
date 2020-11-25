@@ -34,7 +34,10 @@ export default function LandingPage() {
                 <img src={logo} alt="logo" style={{width: '300px'}}></img>
                 <br/>
                 <Link to ='/login'>
-                <Button variant="primary">Start now!</Button>
+                <Button variant="primary" style={{width: '200px'}}>Log In</Button>
+                </Link>
+                <Link to ='/register'>
+                <Button variant="primary" style={{width: '200px'}}>Sign Up</Button>
                 </Link>
             </TimeStamp>
             </Background>
