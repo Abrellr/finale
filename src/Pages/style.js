@@ -42,7 +42,6 @@ const NavbarSection = styled.div`
 const MainSection = styled.div`
   width: 100%;
   min-height: 70vh;
-  max-height: 70%;
   background-color: white;
 `;
 const FooterSection = styled.div`

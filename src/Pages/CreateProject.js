@@ -1,7 +1,8 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import ProjectInput from "../components/ProjectInput"
+import ProjectInput from "../components/ProjectInput";
+import ProjectCard from "../components/ProjectCard";
 import {
   GlobalStyle,
   MainSection,
@@ -21,6 +22,7 @@ export default function CreateProject() {
         </NavbarSection>
           <MainSection>
             <ProjectInput />
+            <ProjectCard />
           </MainSection>
         <FooterSection>
           <Footer />
