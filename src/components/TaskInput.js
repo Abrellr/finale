@@ -39,9 +39,10 @@ export default function TaskInput() {
   };
 
   return (
+
     <div className="task-input-form">
           <Container className="container task-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
-            <h3 className="pb-2">Create Task</h3>
+            <h4 className="pb-2">Create Task</h4>
             <p>Add or edit manually your project tasks here</p>
             <br/>
             <Form className="createTask-form">
