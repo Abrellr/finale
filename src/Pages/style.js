@@ -4,8 +4,8 @@ import bgImage from "../images/bgImage.png";
 const GlobalStyle = createGlobalStyle`
     html, body {
         margin: 0;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        /*height: 100%;*/
         font-size: 1em;
 
         overflow: hidden;
@@ -32,7 +32,7 @@ const TimeStamp = styled.div`
 `;
 const PageContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: fit-content;
 `;
 
 const NavbarSection = styled.div`
@@ -41,12 +41,18 @@ const NavbarSection = styled.div`
 `;
 const MainSection = styled.div`
   width: 100%;
-  min-height: 70vh;
   background-color: white;
 `;
+
+const ProjectCardSection = styled.div `
+    width: 100%;
+    background-color: pink;
+`;
+
+
 const FooterSection = styled.div`
   width: 100%;
-  height: 15%;
+  height: 15vh;
 `;
 
 
@@ -59,4 +65,5 @@ export {
   FooterSection,
   NavbarSection,
   PageContainer,
+  ProjectCardSection
 };

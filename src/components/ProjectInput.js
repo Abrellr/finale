@@ -13,16 +13,16 @@ export default function DateInput() {
   const handleRegister = (e) => {
     e.preventDefault();
     axios
-      .post("", {
-        Project_name: projectName,
-        Project_date: projectDate,
+      .post("/projects/", {
+        project_name: projectName,
+        project_create_at: projectDate,
       })
       .then((response) => {
         const data = response.data;
         alert(
           "Project creation was successful. Click on project to start work"
         );
-        window.open("/", "_self"); // with '_self' page will open in current tab
+        window.open("/createProject", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(
@@ -44,7 +44,7 @@ export default function DateInput() {
                 <Form.Control
                   type="text"
                   placeholder="New project name"
-                  maxLength="10"
+                  maxLength="25"
                   pattern="[a-zA-Z0-9]+"
                   value={projectName}
                   onChange={(e) => setProjectName(e.target.value)}

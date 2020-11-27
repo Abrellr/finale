@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Route, Switch } from "react-router-dom"
 
 //import the styles
@@ -17,17 +17,30 @@ import SignUp from './components/SignUp'
 
 
 function App() {
+
+  const [projects, setProjects] = useState(null)
+
+  useEffect(() => {
+    fetch('/projects/')
+    .then((res) => res.json())
+    .then((data) => setProjects(data))
+    .catch((err) => console.log(err))
+  }, [])
+
+
+
+
   return (
     <div className="App">
       <main>
         <Switch>
         <Route path="/project/:id" 
-          render={() => (
-            <ProjectDetail />
+          render={(props) => (
+            <ProjectDetail projects={projects}{...props} />
           )}/> 
         <Route path="/createProject" 
-          render={() => (
-            <CreateProject />
+          render={(props) => (
+            <CreateProject projects={projects}{...props} />
           )}/>   
           <Route path="/login" 
           render={() => (

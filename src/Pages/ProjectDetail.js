@@ -2,29 +2,19 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import TaskInput from "../components/TaskInput";
-import {
-  GlobalStyle,
-  MainSection,
-  FooterSection,
-  NavbarSection,
-  PageContainer,
-} from "./style";
+import { Container, Row } from "react-bootstrap";
 
-export default function ProjectDetail() {
+export default function ProjectDetail({ projects }) {
   return (
     <>
-      <GlobalStyle />
-      <PageContainer>
-        <NavbarSection>
           <Navigation />
-        </NavbarSection>
-        <MainSection>
-          <TaskInput />
-        </MainSection>
-        <FooterSection>
+            <TaskInput />
+           
+            <Container className="container-fluid">
+            <Row>
+            </Row>
+            </Container> 
           <Footer />
-        </FooterSection>
-      </PageContainer>
     </>
   );
 }
