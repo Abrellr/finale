@@ -53,8 +53,8 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
               <td>{item.break_time}</td>
               <td>{item.total_time}</td>
               <div style={{ display: "flex", flexDirection: "row"}}>
-              <Button color="success">Edit</Button>
-              <Button color="danger" onClick={() => deleteTask(item.task_id)}>Del</Button>
+              <Button variant="success">Edit</Button>
+              <Button variant="danger" onClick={() => deleteTask(item.task_id)}>Del</Button>
               </div>
               </tr>
               </tbody>
