@@ -1,32 +1,45 @@
-import React, { useState } from "react";
-import axios from "axios";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { Container, Row } from "react-bootstrap";
-import './ProjectInput.scss'
-//import { MDBDatePickerV5 } from 'mdbreact';
+import React, { useState } from 'react';
+import { Form, Container, Row, Button } from "react-bootstrap"
+import axios from 'axios';
 
-export default function DateInput() {
-  const [projectName, setProjectName] = useState("");
-  const [projectDate, setProjectDate] = useState("");
+export default function EditProject(props) {
 
-  const handleCreate = (e) => {
+  const [updateProjectName, setUpdateProjectName] = useState("");
+  const [updateProjectDate, setUpdateProjectDate] = useState("");
+
+  const { project_id } = props.match.params
+
+  const getProjectById = async() => {
+      try {
+          const result = await axios.get(`/projects/${project_id}`)
+          setUpdateProjectName(result.data)
+          console.log(result.data)
+      } catch(error) {
+          console.log(error)
+      }
+  }
+//   useEffect(() => {
+//       getProjectById()
+//       }
+//   }, [])
+
+  const handleUpdate = (e) => {
     e.preventDefault();
     axios
-      .post("/projects/", {
-        project_name: projectName,
-        project_create_at: projectDate,
+      .put("/projects/", {
+        project_name: updateProjectName,
+        project_create_at: updateProjectDate,
       })
       .then((response) => {
         const data = response.data;
         alert(
-          "Project creation was successful. Click on project to start work"
+          "Project update was successful. Click on project to start work"
         );
         window.open("/createProject", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(
-          "Project creation failed. Please make sure your project name is at least 2 chars long " +
+          "Project update failed. Please make sure your project name is at least 2 chars long " +
             error
         );
       });
@@ -35,8 +48,8 @@ export default function DateInput() {
   return (
     <div className="project-input-form">
           <Container className="container project-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
-            <h3 className="pb-2">Create Project</h3>
-            <p>Click on your existing project or create new project here</p>
+            <h3 className="pb-2">Edit Project</h3>
+            <p>Edit your here</p>
             <br />
             <Form className="createProject-form">
               <Form.Group controlId="formProjectName">
@@ -46,8 +59,8 @@ export default function DateInput() {
                   placeholder="New project name"
                   maxLength="25"
                   pattern="[a-zA-Z0-9]+"
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
+                  value={updateProjectName}
+                  onChange={(e) => setUpdateProjectName(e.target.value)}
                   required
                 />
               </Form.Group>
@@ -56,8 +69,8 @@ export default function DateInput() {
                 <Form.Control
                   type="date"
                   placeholder="dd/mm/yyyy"
-                  value={projectDate}
-                  onChange={(e) => setProjectDate(e.target.value)}
+                  value={updateProjectDate}
+                  onChange={(e) => setUpdateProjectDate(e.target.value)}
                   required
                 />
               </Form.Group>
@@ -67,7 +80,7 @@ export default function DateInput() {
                   variant="primary"
                   type="submit"
                   block
-                  onClick={handleCreate}
+                  onClick={handleUpdate}
                 >
                   Create new project!
                 </Button>
@@ -77,4 +90,5 @@ export default function DateInput() {
           </Container>
     </div>
   );
+    
 }

@@ -14,11 +14,15 @@ import LoginPage from "./Pages/LoginPage";
 import CreateProject from './Pages/CreateProject';
 import ProjectDetail from './Pages/ProjectDetail';
 import SignUp from './components/SignUp'
+import EditProject from './Pages/EditProject'
 
 
 function App() {
 
   const [projects, setProjects] = useState(null)
+  const [tasks, setTasks] = useState(null)
+  const [updatedTasks, setUpdatedTasks] = useState(null)
+
 
   useEffect(() => {
     fetch('/projects/')
@@ -27,8 +31,17 @@ function App() {
     .catch((err) => console.log(err))
   }, [])
 
-
-
+  useEffect(() => {
+		fetch("/tasks/")
+			.then((res) => res.json())
+      .then((data) => setTasks(data))
+      .catch((err) => console.log(err))
+  }, []);
+  
+  const deleteTasksFromTable = (task_id) => {
+    const updatedTasks = tasks.filter(item => item.task_id !== task_id)
+    setUpdatedTasks({ tasks: updatedTasks})
+  }
 
   return (
     <div className="App">
@@ -36,11 +49,15 @@ function App() {
         <Switch>
         <Route path="/project/:id" 
           render={(props) => (
-            <ProjectDetail projects={projects}{...props} />
+            <ProjectDetail tasks={tasks}{...props} />
           )}/> 
         <Route path="/createProject" 
           render={(props) => (
             <CreateProject projects={projects}{...props} />
+          )}/>
+          <Route exact path="/project/update" 
+          render={(props) => (
+            <EditProject projects={projects}{...props} />
           )}/>   
           <Route path="/login" 
           render={() => (
