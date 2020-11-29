@@ -10,6 +10,7 @@ import { Container, Row } from "react-bootstrap"
 export default function CreateProject({ projects }) {
   return (
     <>
+          
           <Navigation />
             <ProjectInput />
             <Container className="container-fluid">
