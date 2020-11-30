@@ -29,7 +29,8 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
         <Table responsive hover>
         <thead className="thead-dark">
           <tr>
-            <th scope="col">Project_Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">Project name</th>
             <th scope="col">Task</th>
             <th scope="col">Date</th>
             <th scope="col">Start time</th>
@@ -45,7 +46,8 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
               <>
               <tbody>
               <tr key={index}>
-              <td>{item.project_id}</td>
+              <td>{item.username}</td>
+              <td>{item.project_name}</td>
               <td>{item.task_name}</td>
               <td>{item.task_create_at}</td>
               <td>{item.start_time}</td>

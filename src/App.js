@@ -25,14 +25,14 @@ function App() {
 
 
   useEffect(() => {
-    fetch('/projects/')
+    fetch('/projects/user/2')
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
   }, [])
 
   useEffect(() => {
-		fetch("/tasks/")
+		fetch('/tasks/project/20')
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))

@@ -6,10 +6,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import TimePicker from 'react-bootstrap-time-picker';
 import "./TaskInput.scss";
 
-export default function TaskInput() {
+export default function TaskInput({ projects }) {
+  console.log(projects)
 
   const [value, onChange] = useState('10:00');
-  const [task, setTask] = useState("");
+  const [task_name, setTask_name] = useState("");
   const [createDate, setCreateDate] = useState();
   // const [currentTime, setCurrentTime] = useState
   // const [startTime, setStartTime] = useState()
@@ -19,7 +20,7 @@ export default function TaskInput() {
     e.preventDefault();
     axios
       .post("", {
-        task: task,
+        task: task_name,
         //create_date: createDate
         //current_date:
         //start_time:
@@ -41,6 +42,7 @@ export default function TaskInput() {
   return (
 
     <div className="task-input-form">
+    {}
           <Container className="container task-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
             <h4 className="pb-2">Create Task</h4>
             <p>Add or edit manually your project tasks here</p>
@@ -63,8 +65,8 @@ export default function TaskInput() {
                   placeholder="Your task"
                   maxLength="20"
                   pattern="[a-zA-Z0-9]+"
-                  value={task}
-                  onChange={(e) => setTask(e.target.value)}
+                  value={task_name}
+                  onChange={(e) => setTask_name(e.target.value)}
                   required
                 />
               </Form.Group>
