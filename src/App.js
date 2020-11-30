@@ -24,15 +24,22 @@ function App() {
   const [updatedTasks, setUpdatedTasks] = useState(null)
 
 
+  // useEffect(() => {
+  //   fetch('/users/2')
+  //   .then((res) => res.json())
+  // })
+
   useEffect(() => {
-    fetch('/projects/')
+    //fetch('/projects/')
+    fetch('/projects/user/2')
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
   }, [])
 
   useEffect(() => {
-		fetch("/tasks/")
+    //fetch('/tasks/project/20')
+    fetch('/tasks/')
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))

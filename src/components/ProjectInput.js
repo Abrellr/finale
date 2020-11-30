@@ -6,7 +6,7 @@ import { Container, Row } from "react-bootstrap";
 import './ProjectInput.scss'
 //import { MDBDatePickerV5 } from 'mdbreact';
 
-export default function DateInput() {
+export default function ProjectInput() {
   const [projectName, setProjectName] = useState("");
   const [projectDate, setProjectDate] = useState("");
 
