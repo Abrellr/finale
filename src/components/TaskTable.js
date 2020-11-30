@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Table, Button } from "react-bootstrap"
+import { Table, Button, Container } from "react-bootstrap"
+import './TaskTable.scss'
 
 export default function TaskTable({ tasks, deleteTasksFromTable }) {
   console.log(tasks)
@@ -25,8 +26,8 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
     }
   }
     return (
-        <div>
-        <Table responsive hover>
+        <Container id="taskTable" className="border-light shadow p-3 mb-5 rounded py-3 px-3">
+        <Table  border responsive hover>
         <thead className="thead-dark">
           <tr>
             <th scope="col">Username</th>
@@ -64,6 +65,6 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
             )
           })}
       </Table>
-        </div>
+        </Container>
     )
 }
