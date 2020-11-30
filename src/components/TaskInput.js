@@ -7,19 +7,19 @@ import TimePicker from "react-bootstrap-time-picker";
 import NumericInput from "react-numeric-input";
 import "./TaskInput.scss";
 
-export default function TaskInput({ projects }) {
-  console.log(projects);
+export default function TaskInput({ projects, tasks }) {
 
-  const [value, onChange] = useState("10:00");
+  //const [value, onChange] = useState("10:00");
   const [taskName, setTaskName] = useState("");
-  const [createDate, setCreateDate] = useState(null);
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
-  const [breakTime, setBreakTime] = useState(null);
-  const [totalTime, setTotalTime] = useState(null);
+  const [createDate, setCreateDate] = useState("");
+  const [startTime, setStartTime] = useState();
+  const [endTime, setEndTime] = useState();
+  const [breakTime, setBreakTime] = useState();
+  const [totalTime, setTotalTime] = useState();
 
   const handleCreate = (e) => {
     e.preventDefault();
+    
     axios
       .post("/tasks/", {
         task_create_at: createDate,
@@ -30,13 +30,14 @@ export default function TaskInput({ projects }) {
         total_time: totalTime,
       })
       .then((response) => {
+        console.log(response);
         const data = response.data;
         alert("Task creation was successful. Click on project to start work");
         window.open("/", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(
-          "Task creation failed. Please make sure to put your start and end time complete" +
+          "Task creation failed. " +
             error
         );
       });
@@ -75,37 +76,46 @@ export default function TaskInput({ projects }) {
               <Col>
               <Form.Label>Start time</Form.Label>
                 <TimePicker
+                  type="time"
                   className="timepicker"
                   step={5}
                   style={{ width: "120px" }}
-                  onChange={setStartTime}
                   value={startTime}
+                  onChange={time => setStartTime(time)}
                 />
               </Col>
               <Col>
               <Form.Label style={{marginTop: "0.5em"}}>End time</Form.Label>
                 <TimePicker
+                  type="time"
                   className="timepicker"
                   step={5}
                   style={{ width: "120px" }}
-                  onChange={setEndTime}
                   value={endTime}
+                  onChange={time => setEndTime(time)} 
+                  
                 />
               </Col>
               <Col>
               <Form.Label style={{marginTop: "0.5em"}}>Break time</Form.Label>
                 <NumericInput
+                  type="time"
                   className="break-time-input"
                   min={0}
                   step={15}
                   max={120}
+                  value={breakTime}
+                  onChange={time => setBreakTime(time)}
                 />
               </Col>
               <Col>
               <Form.Label style={{marginTop: "0.5em"}}>Total time</Form.Label>
                 <Form.Control
                   //className="mx-sm-3"
+                  type="number"
                   id="total-time"
+                  value={totalTime}
+                  onChange={(e) => setTotalTime(e.target.value)}
                 />
               </Col>
             </Row>
