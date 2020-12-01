@@ -9,7 +9,6 @@ import "./TaskInput.scss";
 
 export default function TaskInput({ projects, tasks }) {
 
-  //const [value, onChange] = useState("10:00");
   const [taskName, setTaskName] = useState("");
   const [createDate, setCreateDate] = useState("");
   const [startTime, setStartTime] = useState();
@@ -132,7 +131,6 @@ export default function TaskInput({ projects, tasks }) {
             </Button>
           </Row>
         </Form>
-        {/* <MDBDatePickerV5 theme="warning" getValue={(e)=> console.log(e)} /> */}
       </Container>
     </div>
   );

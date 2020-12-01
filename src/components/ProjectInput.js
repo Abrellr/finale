@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row } from "react-bootstrap";
 import './ProjectInput.scss'
-//import { MDBDatePickerV5 } from 'mdbreact';
 
 export default function ProjectInput() {
   const [projectName, setProjectName] = useState("");
@@ -73,7 +72,6 @@ export default function ProjectInput() {
                 </Button>
               </Row>
             </Form>
-            {/* <MDBDatePickerV5 theme="warning" getValue={(e)=> console.log(e)} /> */}
           </Container>
     </div>
   );

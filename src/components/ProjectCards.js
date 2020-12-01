@@ -1,9 +1,13 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import format from "date-fns/format"
 import "./ProjectCards.scss";
 
 export default function ProjectCards({ projects }) {
+  
+  const dateFormat = 'dd/mm/yyyy';
+
   return (
     <>
       {projects &&
@@ -13,7 +17,7 @@ export default function ProjectCards({ projects }) {
               <Card.Header className="bg-primary" style={{ height: "3rem"}}></Card.Header>
               <Card.Body>
                 <Card.Title>{project.project_name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{project.project_create_at}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">{format(new Date(project.project_create_at), dateFormat)}</Card.Subtitle>
                 <Card.Text>
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.

@@ -36,6 +36,7 @@ export default function LandingPage() {
                 <Link to ='/login'>
                 <Button variant="primary" style={{width: '200px'}}>Log In</Button>
                 </Link>
+                <br/>
                 <Link to ='/register'>
                 <Button variant="primary" style={{width: '200px'}}>Sign Up</Button>
                 </Link>
