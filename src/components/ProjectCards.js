@@ -25,7 +25,7 @@ export default function ProjectCards({ projects }) {
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.
                 </Card.Text>
-                <Link to={`/project/${project.project_id}`}>
+                <Link to={`/project/${project.user_id}`}>
                 <Button variant="primary">Start work</Button>
                 </Link>
                 <Link to={`/project/update`}>

@@ -18,14 +18,24 @@ import EditProject from './Pages/EditProject'
 
 const PROJECT_INIT_QUERY = 2;
 const TASK_INIT_QUERY = 20;
+const USER_INIT_QUERY = 2;
 
 function App() {
 
   const [projectQuery, setProjectQuery] = useState(PROJECT_INIT_QUERY)
   const [taskQuery, setTaskQuery] = useState(TASK_INIT_QUERY)
+  const [getUsers, setGetUser] = useState(USER_INIT_QUERY)
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
+  const [users, setUsers] = useState("")
 
+
+  useEffect(() => {
+    fetch(`/users/${getUsers}`)
+    .then((res) => res.json())
+    .then((data) => setUsers(data))
+    .catch((err) => console.log(err))
+  }, [getUsers])
   
   //get all projects from one specific user
   useEffect(() => {
@@ -51,11 +61,11 @@ function App() {
         <Switch>
         <Route path="/project/:id" 
           render={(props) => (
-            <ProjectDetail projects={projects} tasks={tasks} {...props} />
+            <ProjectDetail users={users} projects={projects} tasks={tasks} {...props} />
           )}/> 
         <Route path="/createProject" 
           render={(props) => (
-            <CreateProject projects={projects}{...props} />
+            <CreateProject users={users} projects={projects}{...props} />
           )}/>
           <Route exact path="/project/update" 
           render={(props) => (
