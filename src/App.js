@@ -25,7 +25,6 @@ function App() {
   const [taskQuery, setTaskQuery] = useState(TASK_INIT_QUERY)
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
-  const [updatedTasks, setUpdatedTasks] = useState(null)
 
   
   //get all projects from one specific user
@@ -34,7 +33,7 @@ function App() {
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
-  }, [])
+  }, [projectQuery])
 
   //get all tasks from one specific project_id
   useEffect(() => {
@@ -42,12 +41,9 @@ function App() {
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))
-  }, []);
+  }, [taskQuery]);
   
-  const deleteTasksFromTable = (task_id) => {
-    const updatedTasks = tasks.filter(item => item.task_id !== task_id)
-    setUpdatedTasks({ tasks: updatedTasks})
-  }
+
 
   return (
     <div className="App">
@@ -55,7 +51,7 @@ function App() {
         <Switch>
         <Route path="/project/:id" 
           render={(props) => (
-            <ProjectDetail tasks={tasks}{...props} />
+            <ProjectDetail projects={projects} tasks={tasks} {...props} />
           )}/> 
         <Route path="/createProject" 
           render={(props) => (

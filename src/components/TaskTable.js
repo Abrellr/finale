@@ -3,26 +3,21 @@ import { Table, Button, Container, Row } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
 
-export default function TaskTable({ tasks, deleteTasksFromTable }) {
+export default function TaskTable({ tasks }) {
   console.log(tasks);
 
-  const deleteTask = (task_id) => {
+  const [updatedTasks, setUpdatedTasks] = useState();
+
+
+  const deleteTask = (id) => {
     let confirmDelete = window.confirm("Delete task forever?");
     if (confirmDelete) {
-      fetch(`/tasks/$task_id`, {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          task_id,
-        }),
-      })
-        .then((resp) => resp.json())
-        .then((item) => {
-          deleteTasksFromTable(task_id);
+      fetch(`/tasks/${id}`, {
+        method: "DELETE"
         })
-        .catch((err) => console.log(err));
+        .then((resp) => resp.text())
+        .then((updatedTasks) => setUpdatedTasks(TaskTable(updatedTasks)))
+        .catch((err) => console.log('error in frontend'));
     }
   };
   return (
@@ -46,11 +41,11 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
         </thead>
 
         {tasks &&
-          tasks.map((item, index) => {
+          tasks.map((item) => {
             return (
               <>
                 <tbody>
-                  <tr key={index}>
+                  <tr key={item.task_id}>
                     <td>{item.username}</td>
                     <td>{item.project_name}</td>
                     <td>{item.task_name}</td>
