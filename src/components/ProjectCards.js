@@ -6,7 +6,7 @@ import "./ProjectCards.scss";
 
 export default function ProjectCards({ projects }) {
   
-  const dateFormat = 'dd/mm/yyyy';
+  const dateFormat = 'dd/MM/yyyy';
 
   return (
     <>

@@ -16,30 +16,29 @@ import ProjectDetail from './Pages/ProjectDetail';
 import SignUp from './components/SignUp'
 import EditProject from './Pages/EditProject'
 
+const PROJECT_INIT_QUERY = 2;
+const TASK_INIT_QUERY = 20;
 
 function App() {
 
+  const [projectQuery, setProjectQuery] = useState(PROJECT_INIT_QUERY)
+  const [taskQuery, setTaskQuery] = useState(TASK_INIT_QUERY)
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
   const [updatedTasks, setUpdatedTasks] = useState(null)
 
-
-  // useEffect(() => {
-  //   fetch('/users/2')
-  //   .then((res) => res.json())
-  // })
-
+  
+  //get all projects from one specific user
   useEffect(() => {
-    //fetch('/projects/')
-    fetch('/projects/user/2')
+    fetch(`/projects/user/${projectQuery}`)
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
   }, [])
 
+  //get all tasks from one specific project_id
   useEffect(() => {
-    //fetch('/tasks/project/20')
-    fetch('/tasks/')
+    fetch(`/tasks/project/${taskQuery}`)
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))
