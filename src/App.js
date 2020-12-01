@@ -27,7 +27,7 @@ function App() {
   const [getUsers, setGetUser] = useState(USER_INIT_QUERY)
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
-  const [users, setUsers] = useState("")
+  const [users, setUsers] = useState()
 
 
   useEffect(() => {

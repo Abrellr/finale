@@ -13,12 +13,10 @@ export default function LoginForm(props) {
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
-    // prevents the default refresh after submit button has been clicked
     e.preventDefault();
-    // Send a request to the server for authentication
-    axios.post('', {
-      Username: username,
-      Password: password
+    axios.post('/users/', {
+      username: username,
+      password: password
     })
       .then(response => {
         const data = response.data;

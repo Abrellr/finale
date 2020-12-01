@@ -8,7 +8,6 @@ import { Container, Row } from "react-bootstrap"
 
 
 export default function CreateProject({ projects, users }) {
-  console.log(users)
   return (
     <>
           
