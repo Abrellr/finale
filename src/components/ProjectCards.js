@@ -7,6 +7,7 @@ import "./ProjectCards.scss";
 export default function ProjectCards({ projects }) {
   
   const dateFormat = 'dd/MM/yyyy';
+  
 
   const deleteProject = () => {
   fetch(`/projects/190`, {
@@ -26,7 +27,7 @@ export default function ProjectCards({ projects }) {
       {projects &&
         projects.map((project, idx) => {
           return (
-            <Card className="mx-auto mb-3" key={idx} border="primary" style={{ width: "18rem" }}>
+            <Card key={idx} className="mx-auto mb-3 border-light shadow p-3 mb-5 rounded py-3 px-3" border="primary" style={{ width: "18rem" }}>
               <Card.Header className="bg-primary" style={{ height: "3rem"}}></Card.Header>
               <Card.Body>
                 <Card.Title>{project.project_name}</Card.Title>

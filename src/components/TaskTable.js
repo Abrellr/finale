@@ -3,23 +3,19 @@ import { Table, Button, Container, Row } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
 
-export default function TaskTable({ tasks, match,params }) {
+export default function TaskTable({ tasks, projects}) {
   console.log(tasks);
+  console.log(projects);
+  //const { id } = tasks; 
 
-  const [updatedTasks, setUpdatedTasks] = useState();
-
-  console.log(params)
-  console.log(match)
+  //const [updatedTasks, setUpdatedTasks] = useState();
 
   const deleteTask = (id) => {
-
-      //const id = match.params.id
-      fetch(`/tasks/${id}`, {
+      fetch(`/tasks/${id}` , {
         method: "DELETE",
         })
         .then((resp) => resp.json())
         .then((data) => console.log(data))
-
         .catch((err) => console.log(err))
     
   };
@@ -34,7 +30,6 @@ export default function TaskTable({ tasks, match,params }) {
             <th scope="col">Username</th>
             <th scope="col">Project name</th>
             <th scope="col">Task</th>
-            <th scope="col">Date</th>
             <th scope="col">Start time</th>
             <th scope="col">End time</th>
             <th scope="col">Break time</th>
@@ -52,7 +47,6 @@ export default function TaskTable({ tasks, match,params }) {
                     <td>{item.username}</td>
                     <td>{item.project_name}</td>
                     <td>{item.task_name}</td>
-                    <td>{item.task_create_at}</td>
                     <td>{item.start_time}</td>
                     <td>{item.end_time}</td>
                     <td>{item.break_time}</td>

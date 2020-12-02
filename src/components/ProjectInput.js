@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { Container, Row } from "react-bootstrap";
 import "./ProjectInput.scss";
 
-export default function ProjectInput({ projects, match, users }) {
+export default function ProjectInput({ users }) {
   console.log(users)
   const [projectName, setProjectName] = useState("");
   const [projectDate, setProjectDate] = useState("");
@@ -38,15 +38,14 @@ export default function ProjectInput({ projects, match, users }) {
               <>
               {users && users.map((user) => {
                 return(
-                  <>
-                  <h3>Hi {user.username}!</h3>
-                  <h3>Ready to kick some ass?</h3>
-                  </>
+                  <div className="textBox border-dark shadow p-3 mb-5 rounded py-3 px-3">
+                  <h3 className="welcomeText">Hey {user.username}!</h3>
+                  <h3 className="welcomeText">Ready to kick some ass?</h3>
+                  </div>
                 )
               })}
                 <br/>
-                <br/>
-                <h3 className="pb-2">Create Project</h3>
+                <h5 className="pb-2">Create Project</h5>
                 <p>Click on your existing project or create new project here</p>
                 <br />
                 <Form className="createProject-form">
