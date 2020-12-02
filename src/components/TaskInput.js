@@ -4,21 +4,23 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
 import TimePicker from "react-bootstrap-time-picker";
+import DatePicker from "react-datepicker"
 import NumericInput from "react-numeric-input";
+import "react-datepicker/dist/react-datepicker.css";
 import "./TaskInput.scss";
 
 export default function TaskInput({ projects, tasks }) {
-
   const [taskName, setTaskName] = useState("");
   const [createDate, setCreateDate] = useState("");
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
   const [breakTime, setBreakTime] = useState();
   const [totalTime, setTotalTime] = useState();
+  const [startDate, setStartDate] = useState(new Date());
 
   const handleCreate = (e) => {
     e.preventDefault();
-    
+
     axios
       .post("/tasks/", {
         task_create_at: createDate,
@@ -35,12 +37,19 @@ export default function TaskInput({ projects, tasks }) {
         window.open("/", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
-        return alert(
-          "Task creation failed. " +
-            error
-        );
+        return alert("Task creation failed. " + error);
       });
   };
+
+  
+    
+    const ExampleCustomTimeInput = ({ date, value, onChange }) => (
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        style={{ border: "solid 1px pink" }}
+      />
+    )
 
   return (
     <div className="task-input-form">
@@ -73,30 +82,28 @@ export default function TaskInput({ projects, tasks }) {
           <Form.Group>
             <Row className="time-input">
               <Col>
-              <Form.Label>Start time</Form.Label>
-                <TimePicker
+                <Form.Label>Start time</Form.Label>
+                {/* <TimePicker
                   type="time"
                   className="timepicker"
                   step={5}
                   style={{ width: "120px" }}
                   value={startTime}
-                  onChange={time => setStartTime(time)}
+                  onChange={(time) => setStartTime(time)}
+                /> */}
+              </Col>
+              <Col>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  showTimeInput
+                  customTimeInput={<ExampleCustomTimeInput />}
                 />
               </Col>
               <Col>
-              <Form.Label style={{marginTop: "0.5em"}}>End time</Form.Label>
-                <TimePicker
-                  type="time"
-                  className="timepicker"
-                  step={5}
-                  style={{ width: "120px" }}
-                  value={endTime}
-                  onChange={time => setEndTime(time)} 
-                  
-                />
-              </Col>
-              <Col>
-              <Form.Label style={{marginTop: "0.5em"}}>Break time</Form.Label>
+                <Form.Label style={{ marginTop: "0.5em" }}>
+                  Break time
+                </Form.Label>
                 <NumericInput
                   type="time"
                   className="break-time-input"
@@ -104,11 +111,13 @@ export default function TaskInput({ projects, tasks }) {
                   step={15}
                   max={120}
                   value={breakTime}
-                  onChange={time => setBreakTime(time)}
+                  onChange={(time) => setBreakTime(time)}
                 />
               </Col>
               <Col>
-              <Form.Label style={{marginTop: "0.5em"}}>Total time</Form.Label>
+                <Form.Label style={{ marginTop: "0.5em" }}>
+                  Total time
+                </Form.Label>
                 <Form.Control
                   //className="mx-sm-3"
                   type="number"
