@@ -15,8 +15,8 @@ export default function LandingPage({quotes, assignNewQuoteIndex, selectedQuote}
             <GlobalStyle />
             <Background>
             <TimeStamp>
-                <h4>Here you should see random quote</h4>
-                <Button variant="primary" style={{width: '200px'}} onClick={() => randomQuoteHandler(quotes.quote)}>New Quote</Button>
+                <h4>{selectedQuote.quote}</h4>
+                <Button variant="primary" style={{width: '200px'}} onClick={assignNewQuoteIndex}>New Quote</Button>
                 <br/>
                 <img src={logo} alt="logo" style={{width: '300px'}}></img>
                 <br/>

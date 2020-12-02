@@ -109,10 +109,6 @@ function App() {
           render={() => (
             <SignUp />
           )}/>    
-          {/* <Route path="/" 
-          render={(props) => (
-            <LandingPage quotes={quotes}{...props}/>
-          )}/>     */}
         </Switch>
           {
             getSelectedQuote() ? 
