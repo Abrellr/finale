@@ -1,11 +1,11 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import bgImage from "../images/bgImage.png";
 
 const GlobalStyle = createGlobalStyle`
     html, body {
         margin: 0;
         width: 100%;
-        /*height: 100%;*/
+        height: 100%;
         font-size: 1em;
 
         overflow: hidden;
@@ -30,40 +30,12 @@ const TimeStamp = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
-const PageContainer = styled.div`
-  width: 100%;
-  height: fit-content;
-`;
-
-const NavbarSection = styled.div`
-  width: 100%;
-  height: 15%;
-`;
-const MainSection = styled.div`
-  width: 100%;
-  background-color: white;
-`;
-
-const ProjectCardSection = styled.div `
-    width: 100%;
-    background-color: pink;
-`;
-
-
-const FooterSection = styled.div`
-  width: 100%;
-  height: 15vh;
-`;
 
 
 
 export {
   GlobalStyle,
   Background,
-  TimeStamp,
-  MainSection,
-  FooterSection,
-  NavbarSection,
-  PageContainer,
-  ProjectCardSection
+  TimeStamp
+
 };

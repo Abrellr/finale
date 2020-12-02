@@ -6,13 +6,14 @@ import { Container, Row } from "react-bootstrap";
 import TaskTable from "../components/TaskTable";
 
 export default function ProjectDetail({ projects, tasks }) {
+  console.log(tasks)
   return (
     <>
-          <Navigation />
-            <TaskInput projects={projects}  />
+          <Navigation projects={projects} />
+            <TaskInput projects={projects} tasks={tasks} />
             <Container className="container-fluid">
             <Row>
-            <TaskTable tasks={tasks}/>
+            <TaskTable projects={projects} tasks={tasks}/>
             </Row>
             </Container> 
           <Footer />
