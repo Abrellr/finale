@@ -3,22 +3,25 @@ import { Table, Button, Container, Row } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
 
-export default function TaskTable({ tasks }) {
+export default function TaskTable({ tasks, match,params }) {
   console.log(tasks);
 
   const [updatedTasks, setUpdatedTasks] = useState();
 
+  console.log(params)
+  console.log(match)
 
   const deleteTask = (id) => {
-    let confirmDelete = window.confirm("Delete task forever?");
-    if (confirmDelete) {
+
+      //const id = match.params.id
       fetch(`/tasks/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
         })
-        .then((resp) => resp.text())
-        .then((updatedTasks) => setUpdatedTasks(TaskTable(updatedTasks)))
-        .catch((err) => console.log('error in frontend'));
-    }
+        .then((resp) => resp.json())
+        .then((data) => console.log(data))
+
+        .catch((err) => console.log(err))
+    
   };
   return (
     <Container

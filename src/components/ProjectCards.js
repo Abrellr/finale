@@ -2,14 +2,24 @@ import React from "react";
 import { Card, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import format from "date-fns/format"
-import { useHistory } from "react-router-dom"
 import "./ProjectCards.scss";
 
 export default function ProjectCards({ projects }) {
   
   const dateFormat = 'dd/MM/yyyy';
 
-  const history = useHistory()
+  const deleteProject = () => {
+  fetch(`/projects/190`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify()
+  })
+  .then((res) => res.json())
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err))
+}      
 
   return (
     <>
@@ -30,6 +40,9 @@ export default function ProjectCards({ projects }) {
                 </Link>
                 <Link to={`/project/update`}>
                 <Button variant="success">Edit</Button>
+                </Link>
+                <Link to={`/createProject`}>
+                <Button variant="danger" onClick={() => deleteProject(project.project_id)}>Delete</Button>
                 </Link>
               </Card.Body>
             </Card>

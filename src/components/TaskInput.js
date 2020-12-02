@@ -5,9 +5,11 @@ import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
 import TimePicker from "react-bootstrap-time-picker";
 import NumericInput from "react-numeric-input";
+import timeFromInt from 'time-number'
 import "./TaskInput.scss";
 
 export default function TaskInput({ projects, tasks }) {
+
 
   const [taskName, setTaskName] = useState("");
   const [createDate, setCreateDate] = useState("");
@@ -41,6 +43,10 @@ export default function TaskInput({ projects, tasks }) {
         );
       });
   };
+
+  const handleChangeTime = (time) => {
+    console.log(time)
+  }
 
   return (
     <div className="task-input-form">
@@ -80,7 +86,7 @@ export default function TaskInput({ projects, tasks }) {
                   step={5}
                   style={{ width: "120px" }}
                   value={startTime}
-                  onChange={time => setStartTime(time)}
+                  onChange={() => handleChangeTime()}
                 />
               </Col>
               <Col>
@@ -91,7 +97,7 @@ export default function TaskInput({ projects, tasks }) {
                   step={5}
                   style={{ width: "120px" }}
                   value={endTime}
-                  onChange={time => setEndTime(time)} 
+                  onChange={time => console.log(time)} 
                   
                 />
               </Col>
