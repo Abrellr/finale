@@ -6,16 +6,10 @@ import logo from '../images/logoWhite.jpg'
 //import { useState, useEffect } from "react-dom"
 
 
-export default function LandingPage({quotes}) {
+export default function LandingPage({quotes, assignNewQuoteIndex, selectedQuote}) {
     console.log(quotes)
     
-    const [randomQuote, setRandomQuote] = useState()
-
-    const randomQuoteHandler = (quotes) => {
-        const randNumb = Math.floor(Math.random() * quotes.length)
-        const randomQuote = setRandomQuote(randNumb) 
-        console.log(randomQuote)
-    }
+    
     return (
         <div id="landing">
             <GlobalStyle />
