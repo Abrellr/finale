@@ -9,15 +9,14 @@ import { Container, Row } from "react-bootstrap"
 
 export default function CreateProject({ projects, users }) {
   return (
-    <>
-          
+    <> 
           <Navigation projects={projects} />
             <ProjectInput projects={projects} users={users} />
-            <Container className="container-fluid">
+            <Container className="container-fluid wrapper">
             <Row>
             <ProjectCards projects={projects}/>
             </Row>
-          </Container>
+            </Container>
           <Footer />
     </>
   );

@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { Background, GlobalStyle, TimeStamp } from './style'
 import Button from "react-bootstrap/Button"
 import logo from '../images/logoWhite.jpg'
-//import { useState, useEffect } from "react-dom"
 
 
 export default function LandingPage({quotes, assignNewQuoteIndex, selectedQuote}) {
