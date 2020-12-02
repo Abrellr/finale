@@ -1,11 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const MotivationQuote = (props) => {
+
+
+const MotivationQuote = ({quotes}) => {
+    console.log(quotes)
+    
+    const [randomQuote, setRandomQuote] = useState()
+
+    const randomQuoteHandler = (quotes) => {
+        const randNumb = Math.floor(Math.random() * quotes.length)
+        console.log(randNumb)
+        const randomQuote = setRandomQuote[randNumb] 
+        console.log(randomQuote)
+    }
+
 
     return (
         <div>
-            <p>{props.quote}</p>
-            <h4>You should see random quote here</h4>
+        
+            <p>text</p>
+            <button onClick={() => randomQuoteHandler()}></button>
         </div>
     )
 }

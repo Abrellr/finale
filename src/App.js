@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Route, Switch } from "react-router-dom"
+import { random } from "lodash"
 
 //import the styles
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -29,7 +30,36 @@ function App() {
   const [tasks, setTasks] = useState(null)
   const [users, setUsers] = useState()
 
+  const [quotes, setQuotes] = useState([]);
+  const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(null);
 
+  useEffect(async () => {
+    const data = await fetch('https://gist.githubusercontent.com/natebass/b0a548425a73bdf8ea5c618149fe1fce/raw/f4231cd5961f026264bb6bb3a6c41671b044f1f4/quotes.json');
+    const quotes = await data.json();
+    setQuotes(quotes);
+    setSelectedQuoteIndex(random(0, quotes.length - 1));
+  }, []);
+
+  function getSelectedQuote() {
+    if (!quotes.length || !Number.isInteger(selectedQuoteIndex)) {
+      return undefined;
+    }
+    return quotes[selectedQuoteIndex];
+  }
+   
+  function generateNewQuoteIndex() {
+    if (!quotes.length) {
+      return undefined;
+    }
+    return random(0, quotes.length - 1);
+  }
+
+  function assignNewQuoteIndex() {
+    setSelectedQuoteIndex(generateNewQuoteIndex());
+  }
+    
+
+  //get one specific user
   useEffect(() => {
     fetch(`/users/${getUsers}`)
     .then((res) => res.json())
@@ -79,11 +109,17 @@ function App() {
           render={() => (
             <SignUp />
           )}/>    
-          <Route path="/" 
-          render={() => (
-            <LandingPage />
-          )}/>    
+          {/* <Route path="/" 
+          render={(props) => (
+            <LandingPage quotes={quotes}{...props}/>
+          )}/>     */}
         </Switch>
+          {
+            getSelectedQuote() ? 
+            <LandingPage path="/" selectedQuote={getSelectedQuote()} assignNewQuoteIndex={assignNewQuoteIndex} /> :
+            null 
+          }
+
       </main>
     </div>
   );
