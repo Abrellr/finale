@@ -13,7 +13,6 @@ export default function TaskInput({ projects, tasks }) {
 console.log(tasks)
 
   const [taskName, setTaskName] = useState("");
-  const [breakTime, setBreakTime] = useState();
   const [totalTime, setTotalTime] = useState();
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
@@ -102,17 +101,18 @@ console.log(tasks)
                   onChange={(time) => setBreakTime(time)}
                 />
               </Col> */}
+              
               <Col>
+              
+           
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Total time
+                  <br/>
+                  should appear here
+                  _____
                 </Form.Label>
-                <Form.Control
-                  type="number"
-                  id="total-time"
-                  value={totalTime}
-                  onChange={(e) => setTotalTime(e.target.value)}
-                />
               </Col>
+            
             </Row>
           </Form.Group>
           <Row>
