@@ -30,6 +30,8 @@ const TimeStamp = styled.div`
   flex-direction: column;
 `;
 
+
+
 export {
   GlobalStyle,
   Background,

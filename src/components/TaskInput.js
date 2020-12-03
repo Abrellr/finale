@@ -33,7 +33,7 @@ console.log(tasks)
         console.log(response);
         //const data = response.data;
         alert("Task creation was successful. Click on project to start work");
-        window.open("/createProject", "_self"); // with '_self' page will open in current tab
+        window.open("/project/today", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(

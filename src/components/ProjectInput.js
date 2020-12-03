@@ -40,7 +40,7 @@ export default function ProjectInput({ users }) {
                 return(
                   <div className="textBox border-dark shadow p-3 mb-5 rounded py-3 px-3">
                   <h3 className="welcomeText">Hey {user.username}!</h3>
-                  <h3 className="welcomeText">Are you ready to kick some ass?</h3>
+                  <h3 className="welcomeText">Ready to kick some ass?</h3>
                   </div>
                 )
               })}
