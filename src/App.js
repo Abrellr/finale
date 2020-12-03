@@ -45,12 +45,6 @@ function App() {
       .catch((error) => console.log(error.message));
     }, [])
 
-  // useEffect(async () => {
-  //   const data = await fetch('https://gist.githubusercontent.com/natebass/b0a548425a73bdf8ea5c618149fe1fce/raw/f4231cd5961f026264bb6bb3a6c41671b044f1f4/quotes.json');
-  //   const quotes = await data.json();
-  //   setQuotes(quotes);
-  //   setSelectedQuoteIndex(random(0, quotes.length - 1));
-  // }, []);
 
   function getSelectedQuote() {
     if (!quotes.length || !Number.isInteger(selectedQuoteIndex)) {
@@ -78,28 +72,20 @@ function App() {
     .then((data) => setUsers(data))
     .catch((err) => console.log(err))
   }, [getUsers])
-  
 
-
-  //get one specific user
+  //get all projects (from users/one specific user)
   useEffect(() => {
-    fetch(`/users/${getUsers}`)
-    .then((res) => res.json())
-    .then((data) => setUsers(data))
-    .catch((err) => console.log(err))
-  }, [getUsers])
-
-  //get all projects from one specific user
-  useEffect(() => {
-    fetch(`/projects/user/${projectQuery}`)
+    fetch(`/projects/`)
+    //fetch(`/projects/user/${projectQuery}`)
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
   }, [projectQuery])
 
-  //get all tasks from one specific project_id
+  //get all tasks (from projects/one specific project)
   useEffect(() => {
-    fetch(`/tasks/project/${taskQuery}`)
+      fetch(`/tasks/`)
+    //fetch(`/tasks/project/${taskQuery}`)
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))
@@ -111,18 +97,18 @@ function App() {
     <div className="App">
       <main>
         <Switch>
-        <Route path="/project/:id" 
-          render={(props) => (
-            <ProjectDetail users={users} projects={projects} tasks={tasks} {...props} />
-          )}/> 
-        <Route path="/createProject" 
-          render={(props) => (
-            <CreateProject users={users} projects={projects}{...props} />
-          )}/>
           <Route exact path="/project/update" 
           render={(props) => (
             <EditProject projects={projects}{...props} />
-          )}/>   
+          )}/> 
+          <Route path="/project/today" 
+          render={(props) => (
+            <ProjectDetail users={users} projects={projects} setTasks={setTasks} tasks={tasks} {...props} />
+          )}/>  
+          <Route path="/createProject" 
+          render={(props) => (
+            <CreateProject users={users} projects={projects} setProjects={setProjects} {...props} />
+          )}/>
           <Route path="/login" 
           render={() => (
             <LoginPage />

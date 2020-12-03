@@ -13,11 +13,11 @@ export default function TaskInput({ projects, tasks }) {
 console.log(tasks)
 
   const [taskName, setTaskName] = useState("");
-  const [breakTime, setBreakTime] = useState();
   const [totalTime, setTotalTime] = useState();
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
 
+  
 
   const handleCreate = (e) => {
     e.preventDefault();
@@ -26,14 +26,13 @@ console.log(tasks)
         task_name: taskName,
         start_time: startTime,
         end_time: endTime,
-        break_time: breakTime,
         total_time: totalTime,
       })
       .then((response) => {
         console.log(response);
         //const data = response.data;
         alert("Task creation was successful. Click on project to start work");
-        window.open("/project/today", "_self"); // with '_self' page will open in current tab
+        window.open("/createProject", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(
@@ -87,7 +86,7 @@ console.log(tasks)
                   showTimeInput
                 />
               </Col>
-              <Col>
+              {/* <Col>
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Break time
                 </Form.Label>
@@ -101,18 +100,19 @@ console.log(tasks)
                   value={breakTime}
                   onChange={(time) => setBreakTime(time)}
                 />
-              </Col>
+              </Col> */}
+              
               <Col>
+              
+           
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Total time
+                  <br/>
+                  should appear here
+                  _____
                 </Form.Label>
-                <Form.Control
-                  type="number"
-                  id="total-time"
-                  value={totalTime}
-                  onChange={(e) => setTotalTime(e.target.value)}
-                />
               </Col>
+            
             </Row>
           </Form.Group>
           <Row>

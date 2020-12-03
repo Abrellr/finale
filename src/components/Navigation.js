@@ -11,7 +11,7 @@ export default function Navigation() {
     return (
         <>
         
-        <Navbar id="navbar" collapseOnSelect expand="md">
+        <Navbar sticky="top" id="navbar" collapseOnSelect expand="md">
           <Navbar.Brand id="logo" href="#home"><span><img src={logo} alt="logo" style={{width: '150px'}}></img></span></Navbar.Brand>
           <Navbar.Toggle id="toggle" aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
