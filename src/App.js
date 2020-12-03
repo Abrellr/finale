@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Route, Switch } from "react-router-dom"
+import {random} from 'lodash'
 
 //import the styles
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -18,23 +19,65 @@ import EditProject from './Pages/EditProject'
 
 const PROJECT_INIT_QUERY = 2;
 const TASK_INIT_QUERY = 20;
+const USER_INIT_QUERY = 2;
 
 function App() {
 
   const [projectQuery, setProjectQuery] = useState(PROJECT_INIT_QUERY)
   const [taskQuery, setTaskQuery] = useState(TASK_INIT_QUERY)
+  const [getUsers, setGetUser] = useState(USER_INIT_QUERY)
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
   const [updatedTasks, setUpdatedTasks] = useState(null)
-
+  const [users, setUsers] = useState()
+  const [quotes, setQuotes] = useState([]);
+  const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(null);
   
+
+  useEffect(() =>{   
+    fetch("https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const allQuotes = data.quotes;
+        setQuotes(allQuotes);
+        setSelectedQuoteIndex(Math.floor(Math.random()*allQuotes.length))
+      })
+      .catch((error) => console.log(error.message));
+    }, []);
+
+    function getSelectedQuote() {
+      if (!quotes.length || !Number.isInteger(selectedQuoteIndex)) {
+        return undefined;
+      }
+      return quotes[selectedQuoteIndex];
+    }
+     
+    function generateNewQuoteIndex() {
+      if (!quotes.length) {
+        return undefined;
+      }
+      return random(0, quotes.length - 1);
+    }
+  
+    function assignNewQuoteIndex() {
+      setSelectedQuoteIndex(generateNewQuoteIndex());
+    }
+
+  //get one specific user
+  useEffect(() => {
+    fetch(`/users/${getUsers}`)
+    .then((res) => res.json())
+    .then((data) => setUsers(data))
+    .catch((err) => console.log(err))
+  }, [getUsers])
+
   //get all projects from one specific user
   useEffect(() => {
     fetch(`/projects/user/${projectQuery}`)
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
-  }, [])
+  }, [projectQuery])
 
   //get all tasks from one specific project_id
   useEffect(() => {
@@ -42,7 +85,7 @@ function App() {
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))
-  }, []);
+  }, [taskQuery]);
   
   const deleteTasksFromTable = (task_id) => {
     const updatedTasks = tasks.filter(item => item.task_id !== task_id)
@@ -55,11 +98,11 @@ function App() {
         <Switch>
         <Route path="/project/:id" 
           render={(props) => (
-            <ProjectDetail tasks={tasks}{...props} />
+            <ProjectDetail users={users} projects={projects} tasks={tasks} {...props} />
           )}/> 
         <Route path="/createProject" 
           render={(props) => (
-            <CreateProject projects={projects}{...props} />
+            <CreateProject users={users} projects={projects}{...props} />
           )}/>
           <Route exact path="/project/update" 
           render={(props) => (
@@ -72,11 +115,12 @@ function App() {
           <Route path="/register" 
           render={() => (
             <SignUp />
-          )}/>    
-          <Route path="/" 
-          render={() => (
-            <LandingPage />
-          )}/>    
+          )}/> 
+          {
+            getSelectedQuote() ? 
+            <LandingPage path="/" selectedQuote={getSelectedQuote()} assignNewQuoteIndex={assignNewQuoteIndex} /> :
+            null 
+          }
         </Switch>
       </main>
     </div>

@@ -3,27 +3,21 @@ import { Table, Button, Container, Row } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
 
-export default function TaskTable({ tasks, deleteTasksFromTable }) {
+export default function TaskTable({ tasks, projects}) {
   console.log(tasks);
+  console.log(projects);
+  //const { id } = tasks; 
 
-  const deleteTask = (task_id) => {
-    let confirmDelete = window.confirm("Delete task forever?");
-    if (confirmDelete) {
-      fetch(`/tasks/$task_id`, {
-        method: "delete",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          task_id,
-        }),
-      })
-        .then((resp) => resp.json())
-        .then((item) => {
-          deleteTasksFromTable(task_id);
+  //const [updatedTasks, setUpdatedTasks] = useState();
+
+  const deleteTask = (id) => {
+      fetch(`/tasks/${id}` , {
+        method: "DELETE",
         })
-        .catch((err) => console.log(err));
-    }
+        .then((resp) => resp.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
+    
   };
   return (
     <Container
@@ -36,7 +30,6 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
             <th scope="col">Username</th>
             <th scope="col">Project name</th>
             <th scope="col">Task</th>
-            <th scope="col">Date</th>
             <th scope="col">Start time</th>
             <th scope="col">End time</th>
             <th scope="col">Break time</th>
@@ -46,15 +39,14 @@ export default function TaskTable({ tasks, deleteTasksFromTable }) {
         </thead>
 
         {tasks &&
-          tasks.map((item, index) => {
+          tasks.map((item) => {
             return (
               <>
                 <tbody>
-                  <tr key={index}>
+                  <tr key={item.task_id}>
                     <td>{item.username}</td>
                     <td>{item.project_name}</td>
                     <td>{item.task_name}</td>
-                    <td>{item.task_create_at}</td>
                     <td>{item.start_time}</td>
                     <td>{item.end_time}</td>
                     <td>{item.break_time}</td>

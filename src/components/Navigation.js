@@ -7,9 +7,10 @@ import './navigation.scss'
 
 
 
-export default function Navigation() {
+export default function Navigation({projects}) {
     return (
         <>
+        
         <Navbar id="navbar" collapseOnSelect expand="md">
           <Navbar.Brand id="logo" href="#home"><span><img src={logo} alt="logo" style={{width: '150px'}}></img></span></Navbar.Brand>
           <Navbar.Toggle id="toggle" aria-controls="responsive-navbar-nav" />
@@ -18,17 +19,16 @@ export default function Navigation() {
               <NavLink to='/createProject'>
                 <Nav.Link id="nav" href="#create">My Projects</Nav.Link>
               </NavLink>
-              <NavLink to='/project/:id'>
+              <NavLink to={`/project/today`}>
                 <Nav.Link id="nav" eventKey={2} href="#today">Today</Nav.Link>
-              </NavLink>
+              </NavLink>       
               <NavLink to='/'>
                 <Nav.Link id="nav" href="#landing">Log out</Nav.Link>
               </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-
-            
-        </>
+      
+      </>
     )
 }

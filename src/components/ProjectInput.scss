@@ -1,7 +1,8 @@
 $primary-color: #1054FF;
-$secondary-color: #ececec;
+$secondary-color: #100E14;
 $third-color: #ececec;
 $font-family: 'lato', sans-serif;
+$secondary-font: 'Oxygen', sans-serif;
 
 .project-input-container {
   width: 100%;
@@ -28,4 +29,20 @@ $font-family: 'lato', sans-serif;
   background-color: $primary-color;
 }
 
+.welcomeText {
+  font-family: $secondary-font;
+  font-weight: 700;
+}
+
+.textBox {
+  width: 400px;
+  background-color: white;
+  color: $secondary-color;
+  border: solid 8px $secondary-color;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 

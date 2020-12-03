@@ -1,6 +1,6 @@
+
 import React from 'react'
 import LoginForm from '../components/LoginForm'
-import { Route } from 'react-router-dom'
 import { Background, GlobalStyle } from './style'
 
 export default function LoginPage() {
@@ -9,10 +9,6 @@ export default function LoginPage() {
             <GlobalStyle/>
             <Background>
                 <LoginForm />
-                {/* <Route path="/register" 
-                render={() => (
-                    <SignUp />
-                )}/>  */}
             </Background>
         </>
     )

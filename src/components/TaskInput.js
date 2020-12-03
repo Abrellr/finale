@@ -3,27 +3,26 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
-import TimePicker from "react-bootstrap-time-picker";
-import DatePicker from "react-datepicker"
+//import TimePicker from "react-bootstrap-time-picker";
 import NumericInput from "react-numeric-input";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./TaskInput.scss";
 
 export default function TaskInput({ projects, tasks }) {
+console.log(tasks)
+
   const [taskName, setTaskName] = useState("");
-  const [createDate, setCreateDate] = useState("");
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
   const [breakTime, setBreakTime] = useState();
   const [totalTime, setTotalTime] = useState();
-  const [startDate, setStartDate] = useState(new Date());
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(new Date());
+
 
   const handleCreate = (e) => {
     e.preventDefault();
-
     axios
       .post("/tasks/", {
-        task_create_at: createDate,
         task_name: taskName,
         start_time: startTime,
         end_time: endTime,
@@ -32,42 +31,25 @@ export default function TaskInput({ projects, tasks }) {
       })
       .then((response) => {
         console.log(response);
-        const data = response.data;
+        //const data = response.data;
         alert("Task creation was successful. Click on project to start work");
-        window.open("/", "_self"); // with '_self' page will open in current tab
+        window.open("/createProject", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
-        return alert("Task creation failed. " + error);
+        return alert(
+          "Task creation failed. " +
+            error
+        );
       });
   };
-
-  
-    
-    const ExampleCustomTimeInput = ({ date, value, onChange }) => (
-      <input
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        style={{ border: "solid 1px pink" }}
-      />
-    )
 
   return (
     <div className="task-input-form">
       <Container className="container task-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
-        <h4 className="pb-2">Create Task</h4>
+        <h5 className="pb-2">Create Task</h5>
         <p>Add or edit manually your project tasks here</p>
         <br />
         <Form className="createTask-form">
-          <Form.Group controlId="formTaskDate">
-            <Form.Label>Date</Form.Label>
-            <Form.Control
-              type="date"
-              placeholder="dd/mm/yyyy"
-              value={createDate}
-              onChange={(e) => setCreateDate(e.target.value)}
-              required
-            />
-          </Form.Group>
           <Form.Group controlId="formTaskName">
             <Form.Label>Task (optional)</Form.Label>
             <Form.Control
@@ -82,28 +64,35 @@ export default function TaskInput({ projects, tasks }) {
           <Form.Group>
             <Row className="time-input">
               <Col>
-                <Form.Label>Start time</Form.Label>
-                {/* <TimePicker
-                  type="time"
-                  className="timepicker"
-                  step={5}
-                  style={{ width: "120px" }}
-                  value={startTime}
-                  onChange={(time) => setStartTime(time)}
-                /> */}
+                <Form.Label style={{ marginTop: "0.5em" }}>Start time</Form.Label>
+                <br/>
+                <DatePicker
+                  selected={startTime}
+                  onChange={(date) => setStartTime(date)}
+                  maxDate={new Date()}
+                  timeInputLabel="Time:"
+                  dateFormat="dd/MM/yyy h:mm aa"
+                  showTimeInput 
+                  style={{border: 'blue !important'}} 
+                />
               </Col>
               <Col>
+                <Form.Label style={{ marginTop: "0.5em" }}>End time</Form.Label>
+                <br/>
                 <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
+                  selected={endTime}
+                  onChange={(date) => setEndTime(date)}
+                  maxDate={new Date()}
+                  timeInputLabel="Time:"
+                  dateFormat="dd/MM/yyy h:mm aa"
                   showTimeInput
-                  customTimeInput={<ExampleCustomTimeInput />}
                 />
               </Col>
               <Col>
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Break time
                 </Form.Label>
+                <br/>
                 <NumericInput
                   type="time"
                   className="break-time-input"
@@ -119,7 +108,6 @@ export default function TaskInput({ projects, tasks }) {
                   Total time
                 </Form.Label>
                 <Form.Control
-                  //className="mx-sm-3"
                   type="number"
                   id="total-time"
                   value={totalTime}
