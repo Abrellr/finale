@@ -86,7 +86,6 @@ export default function EditProject(props) {
                 </Button>
               </Row>
             </Form>
-            {/* <MDBDatePickerV5 theme="warning" getValue={(e)=> console.log(e)} /> */}
           </Container>
     </div>
   );

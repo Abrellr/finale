@@ -67,6 +67,18 @@ function App() {
     .catch((err) => console.log(err))
   }, [getUsers])
   
+    function assignNewQuoteIndex() {
+      setSelectedQuoteIndex(generateNewQuoteIndex());
+    }
+
+  //get one specific user
+  useEffect(() => {
+    fetch(`/users/${getUsers}`)
+    .then((res) => res.json())
+    .then((data) => setUsers(data))
+    .catch((err) => console.log(err))
+  }, [getUsers])
+
   //get all projects from one specific user
   useEffect(() => {
     fetch(`/projects/user/${projectQuery}`)

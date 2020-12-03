@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
         width: 100%;
         height: 100%;
         font-size: 1em;
-
         overflow: hidden;
     }`;
 
