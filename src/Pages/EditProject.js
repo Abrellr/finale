@@ -7,21 +7,6 @@ export default function EditProject(props) {
   const [updateProjectName, setUpdateProjectName] = useState("");
   const [updateProjectDate, setUpdateProjectDate] = useState("");
 
-  const { project_id } = props.match.params
-
-  const getProjectById = async() => {
-      try {
-          const result = await axios.get(`/projects/${project_id}`)
-          setUpdateProjectName(result.data)
-          console.log(result.data)
-      } catch(error) {
-          console.log(error)
-      }
-  }
-//   useEffect(() => {
-//       getProjectById()
-//       }
-//   }, [])
 
   const handleUpdate = (e) => {
     e.preventDefault();

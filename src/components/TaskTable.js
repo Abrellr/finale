@@ -3,22 +3,31 @@ import { Table, Button, Container, Row } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
 
-export default function TaskTable({ tasks, projects}) {
+export default function TaskTable({ tasks, projects, setTasks }) {
   console.log(tasks);
   console.log(projects);
 
-  //const [updatedTasks, setUpdatedTasks] = useState();
 
-  const deleteTask = (id) => {
-    console.log(id)
-      fetch(`/tasks/${id}` , {
-      method: "DELETE",
-       })
-        .then((resp) => resp.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err))
-    
-  };
+
+  const deleteTask = ({task_id}) => {
+    fetch(`/tasks/${task_id}` , {
+    method: "DELETE",
+     })
+      .then((resp) => {
+        if (!resp.ok) throw new Error('Error during task deletion')
+        resp.json()
+      })
+      .then((data) =>
+    setTasks((prevTasks) =>
+      prevTasks.filter((task) => task.task_id !== task_id)
+    )
+  )
+  .catch((err) => console.log(err.message));
+};
+
+  
+
+
   return (
     <Container
       id="taskTable"
@@ -27,35 +36,32 @@ export default function TaskTable({ tasks, projects}) {
       <Table border responsive hover>
         <thead className="thead-dark">
           <tr>
-            <th scope="col">Username</th>
+            {/* <th scope="col">Username</th> */}
             <th scope="col">Project name</th>
             <th scope="col">Task</th>
             <th scope="col">Start time</th>
             <th scope="col">End time</th>
-            <th scope="col">Break time</th>
             <th scope="col">Total time</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
 
         {tasks &&
-          tasks.map((item, idx) => {
+          tasks.map((task) => {
             return (
               <>
                 <tbody>
-                  <tr key={idx}>
-                    <td>{item.username}</td>
-                    <td>{item.project_name}</td>
-                    <td>{item.task_name}</td>
-                    <td>{item.start_time}</td>
-                    <td>{item.end_time}</td>
-                    <td>{item.break_time}</td>
-                    <td>{item.total_time}</td>
+                  <tr key={task.task_id}>
+                    <td>{task.project_name}</td> 
+                    <td>{task.task_name}</td>
+                    <td>{task.start_time}</td>
+                    <td>{task.end_time}</td>
+                    <td>{task.total_time}</td>
                     <td style={{ display: "flex", flexDirection: "row" }}>
                       <Button variant="success">Edit</Button>
                       <Button
                         variant="danger"
-                        onClick={(item) => deleteTask(item.task_id)}
+                        onClick={() => deleteTask(task)}
                       >
                         Del
                       </Button>

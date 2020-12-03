@@ -18,6 +18,7 @@ console.log(tasks)
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
 
+  
 
   const handleCreate = (e) => {
     e.preventDefault();
@@ -26,14 +27,13 @@ console.log(tasks)
         task_name: taskName,
         start_time: startTime,
         end_time: endTime,
-        break_time: breakTime,
         total_time: totalTime,
       })
       .then((response) => {
         console.log(response);
         //const data = response.data;
         alert("Task creation was successful. Click on project to start work");
-        window.open("/project/today", "_self"); // with '_self' page will open in current tab
+        window.open("/createProject", "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(
@@ -87,7 +87,7 @@ console.log(tasks)
                   showTimeInput
                 />
               </Col>
-              <Col>
+              {/* <Col>
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Break time
                 </Form.Label>
@@ -101,7 +101,7 @@ console.log(tasks)
                   value={breakTime}
                   onChange={(time) => setBreakTime(time)}
                 />
-              </Col>
+              </Col> */}
               <Col>
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Total time

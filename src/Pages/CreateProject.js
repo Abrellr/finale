@@ -7,14 +7,14 @@ import { Container, Row } from "react-bootstrap"
 
 
 
-export default function CreateProject({ projects, users }) {
+export default function CreateProject({ projects, users, setProjects }) {
   return (
     <> 
           <Navigation projects={projects} />
             <ProjectInput projects={projects} users={users} />
             <Container className="container-fluid wrapper">
             <Row>
-            <ProjectCards projects={projects} users={users}/>
+            <ProjectCards projects={projects} users={users} setProjects={setProjects}/>
             </Row>
             </Container>
           <Footer />
