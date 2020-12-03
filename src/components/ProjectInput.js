@@ -6,7 +6,6 @@ import { Container, Row } from "react-bootstrap";
 import "./ProjectInput.scss";
 
 export default function ProjectInput({ users }) {
-  console.log(users)
   const [projectName, setProjectName] = useState("");
   const [projectDate, setProjectDate] = useState("");
 
@@ -35,11 +34,10 @@ export default function ProjectInput({ users }) {
   return (
     <div className="project-input-form">
       <Container className="container project-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
-              <>
-              {users && users.map((user) => {
+              {users && users.map((user, user_id) => {
                 return(
-                  <div className="textBox border-dark shadow p-3 mb-5 rounded py-3 px-3">
-                  <h3 className="welcomeText">Hey {user.username}!</h3>
+                  <div key={user.user_id} className="textBox border-dark shadow p-3 mb-5 rounded py-3 px-3">
+                  <h3  className="welcomeText">Hey {user.username}!</h3>
                   <h3 className="welcomeText">Ready to kick some ass?</h3>
                   </div>
                 )
@@ -82,9 +80,7 @@ export default function ProjectInput({ users }) {
                       Create new project!
                     </Button>
                   </Row>
-                </Form>
-              </>
-            
+                </Form>            
       </Container>
     </div>
   );

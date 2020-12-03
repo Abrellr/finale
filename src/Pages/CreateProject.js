@@ -14,7 +14,7 @@ export default function CreateProject({ projects, users }) {
             <ProjectInput projects={projects} users={users} />
             <Container className="container-fluid wrapper">
             <Row>
-            <ProjectCards projects={projects}/>
+            <ProjectCards projects={projects} users={users}/>
             </Row>
             </Container>
           <Footer />

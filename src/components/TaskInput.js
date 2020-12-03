@@ -73,7 +73,6 @@ console.log(tasks)
                   timeInputLabel="Time:"
                   dateFormat="dd/MM/yyy h:mm aa"
                   showTimeInput 
-                  style={{border: 'blue !important'}} 
                 />
               </Col>
               <Col>
