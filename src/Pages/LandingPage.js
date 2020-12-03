@@ -5,9 +5,7 @@ import Button from "react-bootstrap/Button"
 import logo from '../images/logoWhite.jpg'
 
 
-export default function LandingPage({quotes, assignNewQuoteIndex, selectedQuote}) {
-    console.log(quotes)
-    
+export default function LandingPage({assignNewQuoteIndex, selectedQuote}) {    
     
     return (
         <div id="landing">

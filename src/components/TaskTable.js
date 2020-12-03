@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table, Button, Container, Row } from "react-bootstrap";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
@@ -6,14 +6,14 @@ import "./TaskTable.scss";
 export default function TaskTable({ tasks, projects}) {
   console.log(tasks);
   console.log(projects);
-  //const { id } = tasks; 
 
   //const [updatedTasks, setUpdatedTasks] = useState();
 
   const deleteTask = (id) => {
+    console.log(id)
       fetch(`/tasks/${id}` , {
-        method: "DELETE",
-        })
+      method: "DELETE",
+       })
         .then((resp) => resp.json())
         .then((data) => console.log(data))
         .catch((err) => console.log(err))
@@ -39,11 +39,11 @@ export default function TaskTable({ tasks, projects}) {
         </thead>
 
         {tasks &&
-          tasks.map((item) => {
+          tasks.map((item, idx) => {
             return (
               <>
                 <tbody>
-                  <tr key={item.task_id}>
+                  <tr key={idx}>
                     <td>{item.username}</td>
                     <td>{item.project_name}</td>
                     <td>{item.task_name}</td>
@@ -51,15 +51,15 @@ export default function TaskTable({ tasks, projects}) {
                     <td>{item.end_time}</td>
                     <td>{item.break_time}</td>
                     <td>{item.total_time}</td>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
+                    <td style={{ display: "flex", flexDirection: "row" }}>
                       <Button variant="success">Edit</Button>
                       <Button
                         variant="danger"
-                        onClick={() => deleteTask(item.task_id)}
+                        onClick={(item) => deleteTask(item.task_id)}
                       >
                         Del
                       </Button>
-                    </div>
+                    </td>
                   </tr>
                 </tbody>
               </>

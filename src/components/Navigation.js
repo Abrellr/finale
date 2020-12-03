@@ -7,7 +7,7 @@ import './navigation.scss'
 
 
 
-export default function Navigation({projects}) {
+export default function Navigation() {
     return (
         <>
         
@@ -19,8 +19,8 @@ export default function Navigation({projects}) {
               <NavLink to='/createProject'>
                 <Nav.Link id="nav" href="#create">My Projects</Nav.Link>
               </NavLink>
-              <NavLink to={`/project/today`}>
-                <Nav.Link id="nav" eventKey={2} href="#today">Today</Nav.Link>
+              <NavLink to='/project/today'>
+                <Nav.Link id="nav" href="#today">Today</Nav.Link>
               </NavLink>       
               <NavLink to='/'>
                 <Nav.Link id="nav" href="#landing">Log out</Nav.Link>
