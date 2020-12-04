@@ -30,7 +30,7 @@ export default function ProjectCards({ projects, setProjects }) {
           return (
             <Card
               key={idx}
-              className="mx-auto mb-3 border-light shadow p-3 mb-5 rounded py-3 px-3"
+              className="projectCard mx-auto mb-3 border-light shadow p-3 mb-5 rounded py-3 px-3"
               border="primary"
               style={{ width: "18rem" }}
             >
@@ -51,7 +51,7 @@ export default function ProjectCards({ projects, setProjects }) {
                 <Link to={`/project/today`}>
                   <Button variant="primary">Start work</Button>
                 </Link>
-                <Link to={`/project/update`}>
+                <Link to={`/project/update/${project.project_id}`}>
                   <Button variant="success">Edit</Button>
                 </Link>
                 <Link to={`/createProject`}>

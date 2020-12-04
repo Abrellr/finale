@@ -5,10 +5,10 @@ import './Footer.scss'
 
 export default function Footer() {
     return (
-        <div>
+        <>
         <Card className="footerCard">
             <Card.Img src={footer} alt="footer" style={{border: 'none'}}/>
         </Card>
-        </div>
+        </>
     )
 }

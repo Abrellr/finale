@@ -9,14 +9,15 @@ export default function ProjectDetail({ projects, tasks, setTasks }) {
   console.log(setTasks)
   return (
     <>
+        <Container fluid style={{width: "100vw"}}>
           <Navigation projects={projects} />
             <TaskInput projects={projects} tasks={tasks} setTasks={setTasks} />
-            <Container className="container-fluid">
             <Row>
             <TaskTable projects={projects} tasks={tasks} setTasks={setTasks}/>
             </Row>
-            </Container> 
           <Footer />
+        </Container> 
+
     </>
   );
 }

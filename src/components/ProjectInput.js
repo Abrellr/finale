@@ -32,7 +32,7 @@ export default function ProjectInput({ users }) {
   };
 
   return (
-    <div className="project-input-form">
+    <div >
       <Container className="container project-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
               {users && users.map((user, user_id) => {
                 return(

@@ -95,11 +95,10 @@ function App() {
 
   return (
     <div className="App">
-      <main>
         <Switch>
-          <Route exact path="/project/update" 
+          <Route path="/project/update/:id" 
           render={(props) => (
-            <EditProject projects={projects}{...props} />
+            <EditProject projects={projects} setProjects={projects} {...props} />
           )}/> 
           <Route path="/project/today" 
           render={(props) => (
@@ -125,7 +124,6 @@ function App() {
         </Switch>
           
 
-      </main>
     </div>
   );
 }
