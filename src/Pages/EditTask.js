@@ -3,49 +3,46 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
-import NumericInput from "react-numeric-input";
+//import NumericInput from "react-numeric-input";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./TaskInput.scss";
 
-export default function TaskInput({ projects, tasks }) {
+
+export default function EditTask({task}) {
 console.log(tasks)
 
-  const [taskName, setTaskName] = useState("");
-  const [totalTime, setTotalTime] = useState();
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+    const [updateTaskName, setUpdateTaskName] = useState()
+    const [updateStartTime, setUpdateStartTime] = useState()
+    const [updateEndTime, setUpdateEndTime] = useState()
 
-  
+    const handleUpdate = (e) => {
+      e.preventDefault();
+      axios
+        .put("/tasks/", {
+          task_name: updateTaskName,
+          task_start_at: updateStartTime,
+          task_end_at: updateEndTime
+        })
+        .then((response) => {
+          const data = response.data;
+          alert(
+            "Task update was successful. Click on project to start work"
+          );
+          window.open("/createProject", "_self"); // with '_self' page will open in current tab
+        })
+        .catch((error) => {
+          return alert(
+            "Project update failed. Please make sure your project name is at least 2 chars long " +
+              error
+          );
+        });
+    };
 
-  const handleCreate = (e) => {
-    e.preventDefault();
-    axios
-      .post("/tasks/", {
-        task_name: taskName,
-        start_time: startTime,
-        end_time: endTime,
-        total_time: totalTime,
-      })
-      .then((response) => {
-        console.log(response);
-        //const data = response.data;
-        alert("Task creation was successful. Click on project to start work");
-        window.open("/createProject", "_self"); // with '_self' page will open in current tab
-      })
-      .catch((error) => {
-        return alert(
-          "Task creation failed. " +
-            error
-        );
-      });
-  };
-
-  return (
+return (
     <div className="task-input-form">
       <Container className="container task-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
-        <h5 className="pb-2">Create Task</h5>
-        <p>Add or edit manually your project tasks here</p>
+        <p>Edit tasks here</p>
         <br />
         <Form className="createTask-form">
           <Form.Group controlId="formTaskName">
@@ -55,8 +52,8 @@ console.log(tasks)
               placeholder="Your task"
               maxLength="30"
               pattern="[a-zA-Z0-9]+"
-              value={taskName}
-              onChange={(e) => setTaskName(e.target.value)}
+              value={updateTaskName}
+              onChange={(e) => setUpdateTaskName(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
@@ -65,8 +62,8 @@ console.log(tasks)
                 <Form.Label style={{ marginTop: "0.5em" }}>Start time</Form.Label>
                 <br/>
                 <DatePicker
-                  selected={startTime}
-                  onChange={(date) => setStartTime(date)}
+                  selected={updateStartTime}
+                  onChange={(date) => setUpdateStartTime(date)}
                   maxDate={new Date()}
                   timeInputLabel="Time:"
                   dateFormat="dd/MM/yyy h:mm aa"
@@ -77,15 +74,15 @@ console.log(tasks)
                 <Form.Label style={{ marginTop: "0.5em" }}>End time</Form.Label>
                 <br/>
                 <DatePicker
-                  selected={endTime}
-                  onChange={(date) => setEndTime(date)}
+                  selected={updateEndTime}
+                  onChange={(date) => setUpdateEndTime(date)}
                   maxDate={new Date()}
                   timeInputLabel="Time:"
                   dateFormat="dd/MM/yyy h:mm aa"
                   showTimeInput
                 />
               </Col>
-              {/* <Col>
+             {/* <Col>
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Break time
                 </Form.Label>
@@ -96,14 +93,11 @@ console.log(tasks)
                   min={0}
                   step={15}
                   max={120}
-                  value={breakTime}
-                  onChange={(time) => setBreakTime(time)}
+                  value={updateBreakTime}
+                  onChange={(time) => setUpdateBreakTime(time)}
                 />
-              </Col> */}
-              
+              </Col>  */}
               <Col>
-              
-           
                 <Form.Label style={{ marginTop: "0.5em" }}>
                   Total time
                   <br/>
@@ -120,9 +114,9 @@ console.log(tasks)
               variant="primary"
               type="submit"
               block
-              onClick={handleCreate}
+              onClick={handleUpdate}
             >
-              Create task!
+              Update task!
             </Button>
           </Row>
         </Form>

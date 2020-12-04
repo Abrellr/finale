@@ -117,11 +117,11 @@ function App() {
           render={() => (
             <SignUp />
           )}/> 
-          {
+           {
             getSelectedQuote() ? 
             <LandingPage path="/" selectedQuote={getSelectedQuote()} assignNewQuoteIndex={assignNewQuoteIndex} /> :
             null 
-          } 
+          }  
         </Switch>
           
 

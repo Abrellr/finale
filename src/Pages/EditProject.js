@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Container, Row, Button } from "react-bootstrap"
+import Navigation from "../components/Navigation"
 import axios from 'axios';
 
-export default function EditProject(props) {
+export default function EditProject({projects}) {
 
   const [updateProjectName, setUpdateProjectName] = useState("");
   const [updateProjectDate, setUpdateProjectDate] = useState("");
@@ -31,6 +32,8 @@ export default function EditProject(props) {
   };
 
   return (
+    <>
+    <Navigation projects={projects} />
     <div className="project-input-form">
           <Container className="container project-input-container border border-light shadow p-3 mb-5 rounded py-3 px-3">
             <h3 className="pb-2">Edit Project</h3>
@@ -67,12 +70,13 @@ export default function EditProject(props) {
                   block
                   onClick={handleUpdate}
                 >
-                  Create new project!
+                  Update project!
                 </Button>
               </Row>
             </Form>
           </Container>
     </div>
+    </>
   );
     
 }
