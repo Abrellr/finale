@@ -7,7 +7,10 @@ import "./ProjectCards.scss";
 export default function ProjectCards({ projects, setProjects }) {
   const dateFormat = "dd/MM/yyyy";
 
+  
+
   const deleteProject = ({ project_id }) => {
+    if(project_id){
     fetch(`/projects/${project_id}`, {
       method: "DELETE",
     })
@@ -21,6 +24,7 @@ export default function ProjectCards({ projects, setProjects }) {
         )
       )
       .catch((err) => console.log(err.message));
+    }
   };
 
   return (
@@ -48,7 +52,7 @@ export default function ProjectCards({ projects, setProjects }) {
                   the bulk of the card's content.
                 </Card.Text>
                 {/* <Link to={`/project/${project.user_id}`}> */}
-                <Link to={`/project/today`}>
+                <Link to={`/project/${project.project_id}`}>
                   <Button variant="primary">Start work</Button>
                 </Link>
                 <Link to={`/project/update/${project.project_id}`}>

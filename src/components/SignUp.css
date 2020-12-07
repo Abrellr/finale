@@ -1,0 +1,38 @@
+.register-container {
+  width: 100%;
+  margin-top: 100px;
+}
+
+.sign-up-button,
+#formBasicUsername,
+#formBasicPassword,
+#formBasicEmail {
+  border-radius: 24px;
+  border-color: #1054FF;
+}
+
+.sign-up-button {
+  background-color: #1054FF;
+}
+
+.sign-up-button:hover {
+  background-color: #769dff;
+  border-color: #769dff;
+}
+
+.sign-up-button:focus,
+.sigh-up-button:active {
+  outline: none !important;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: #769dff;
+}
+
+.login-link {
+  color: #1054FF;
+}
+
+.login-link:hover {
+  color: #769dff;
+}
+/*# sourceMappingURL=SignUp.css.map */

@@ -3,22 +3,26 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
-import NumericInput from "react-numeric-input";
+import {useParams} from "react-router-dom"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./TaskInput.scss";
 
-export default function TaskInput({ projects, tasks }) {
+export default function TaskInput({ projects, tasks, setProjects }) {
 console.log(tasks)
+const { id } = useParams()
 
   const [taskName, setTaskName] = useState("");
   const [totalTime, setTotalTime] = useState();
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-
+  //const [selectedProjectId, setSelectedProjectId] = useState(`${projects.project_id}`)
   
 
   const handleCreate = (e) => {
+    if(handleCreate) {
+      setProjects && setProjects.filter((project) => project.project_id === parseInt(id, 10))
+    }
     e.preventDefault();
     axios
       .post("/tasks/", {
@@ -26,12 +30,13 @@ console.log(tasks)
         start_time: startTime,
         end_time: endTime,
         total_time: totalTime,
+        project_id: id,
       })
       .then((response) => {
         console.log(response);
         //const data = response.data;
         alert("Task creation was successful. Click on project to start work");
-        window.open("/createProject", "_self"); // with '_self' page will open in current tab
+        window.open(`/createProject`, "_self"); // with '_self' page will open in current tab
       })
       .catch((error) => {
         return alert(
@@ -84,32 +89,6 @@ console.log(tasks)
                   dateFormat="dd/MM/yyy h:mm aa"
                   showTimeInput
                 />
-              </Col>
-              {/* <Col>
-                <Form.Label style={{ marginTop: "0.5em" }}>
-                  Break time
-                </Form.Label>
-                <br/>
-                <NumericInput
-                  type="time"
-                  className="break-time-input"
-                  min={0}
-                  step={15}
-                  max={120}
-                  value={breakTime}
-                  onChange={(time) => setBreakTime(time)}
-                />
-              </Col> */}
-              
-              <Col>
-              
-           
-                <Form.Label style={{ marginTop: "0.5em" }}>
-                  Total time
-                  <br/>
-                  should appear here
-                  _____
-                </Form.Label>
               </Col>
             
             </Row>

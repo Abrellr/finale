@@ -1,0 +1,27 @@
+#navbar {
+  background-color: #100E14;
+  opacity: 100%;
+}
+
+#navlink {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#nav {
+  color: white;
+  font-family: "Lato", "sans-serif";
+  font-size: 1.3rem;
+  font-weight: 400;
+  padding-right: 2em;
+}
+
+#toggle {
+  background-color: white;
+}
+/*# sourceMappingURL=navigation.css.map */

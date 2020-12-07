@@ -83,14 +83,19 @@ function App() {
   }, [projectQuery])
 
   //get all tasks (from projects/one specific project)
+  
   useEffect(() => {
-      fetch(`/tasks/`)
-    //fetch(`/tasks/project/${taskQuery}`)
+    const getTasks = () => {
+      //fetch(`/tasks/`)
+      fetch(`/tasks/project/${taskQuery}`)
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))
+    }
+    getTasks();
   }, [taskQuery]);
   
+
 
 
   return (
@@ -100,7 +105,7 @@ function App() {
           render={(props) => (
             <EditProject projects={projects} setProjects={projects} {...props} />
           )}/> 
-          <Route path="/project/today" 
+          <Route path="/project/:id" 
           render={(props) => (
             <ProjectDetail users={users} projects={projects} setTasks={setTasks} tasks={tasks} {...props} />
           )}/>  

@@ -5,15 +5,15 @@ import TaskInput from "../components/TaskInput";
 import { Container, Row } from "react-bootstrap";
 import TaskTable from "../components/TaskTable";
 
-export default function ProjectDetail({ projects, tasks, setTasks }) {
-  console.log(setTasks)
+export default function ProjectDetail({ projects, tasks, setTasks, setProjects }) {
+  console.log(tasks)
   return (
     <>
         <Container fluid style={{width: "100vw"}}>
           <Navigation projects={projects} />
-            <TaskInput projects={projects} tasks={tasks} setTasks={setTasks} />
+            <TaskInput projects={projects} tasks={tasks} setTasks={setTasks} setProjects={projects} />
             <Row>
-            <TaskTable projects={projects} tasks={tasks} setTasks={setTasks}/>
+            <TaskTable projects={projects} tasks={tasks} setTasks={setTasks} setProjects={projects} />
             </Row>
           <Footer />
         </Container> 

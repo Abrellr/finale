@@ -1,0 +1,62 @@
+.task-input-container {
+  width: 100%;
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "lato", sans-serif;
+}
+
+.createTask-form {
+  width: 40%;
+}
+
+.create-task-button,
+#formTaskName,
+#formTaskDate {
+  width: 100%;
+  border: solid 1px #ececec;
+}
+
+.create-task-button {
+  background-color: #1054FF;
+}
+
+.time-input {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-center;
+      -ms-flex-pack: space-center;
+          justify-content: space-center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#total-time {
+  max-width: 100px;
+  border: none;
+  border-bottom: solid 1px #1054FF;
+}
+
+.break-time-input {
+  width: 100px;
+  height: 37px;
+}
+/*# sourceMappingURL=TaskInput.css.map */

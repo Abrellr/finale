@@ -14,7 +14,7 @@ export default function CreateProject({ projects, users, setProjects }) {
           <Navigation projects={projects} />
             <ProjectInput projects={projects}  users={users} />
             <Row>
-            <ProjectCards projects={projects} users={users} setProjects={setProjects}/>
+            <ProjectCards projects={projects} users={users} setProjects={setProjects} />
             </Row>
           <Footer />
         </Container>

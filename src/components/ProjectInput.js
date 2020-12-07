@@ -6,6 +6,8 @@ import { Container, Row } from "react-bootstrap";
 import "./ProjectInput.scss";
 
 export default function ProjectInput({ users }) {
+  console.log(users)
+
   const [projectName, setProjectName] = useState("");
   const [projectDate, setProjectDate] = useState("");
 
