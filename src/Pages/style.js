@@ -22,7 +22,7 @@ const Background = styled.div`
 `;
 
 const TimeStamp = styled.div`
-  width: 30%;
+  width: fit-content;
   height: 50%;
   display: flex;
   align-items: center;

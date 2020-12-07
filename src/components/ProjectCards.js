@@ -15,7 +15,7 @@ export default function ProjectCards({ projects, setProjects }) {
       method: "DELETE",
     })
       .then((res) => {
-        if (!res.ok) throw new Error('Error during project deletion')
+        if (!res.ok) alert ('Please clear task list first!')
         res.json()
       })
       .then((data) =>
