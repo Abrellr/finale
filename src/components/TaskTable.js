@@ -54,11 +54,11 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
                     <td>{task.start_time}</td>
                     <td>{task.end_time}</td>
                     <td>
+                      {/* {task.total_time.toLocalTimeString()} */}
                       {task.total_time.hours}hr(s) {task.total_time.minutes}
                       minutes
                     </td>
                     <td style={{ display: "flex", flexDirection: "row" }}>
-                      <Button variant="success">Edit</Button>
                       <Button variant="danger" onClick={() => deleteTask(task)}>
                         Del
                       </Button>
@@ -75,7 +75,12 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
           color="primary"
           style={{ float: "left", marginLeft: "1em" }}
           className="btn btn-primary"
-          data={tasks}
+          data={tasks && tasks.map(task => {
+            return{
+              ...task,
+              total_time: `${task.total_time.hours || '0'} hours, ${task.total_time.minutes || '0'} minutes, ${task.total_time.seconds || '0'} seconds`
+            };
+          })}
         >
           Download CSV
         </CSVLink>

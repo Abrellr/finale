@@ -55,9 +55,6 @@ export default function ProjectCards({ projects, setProjects }) {
                 <Link to={`/project/${project.project_id}`}>
                   <Button variant="primary">Start work</Button>
                 </Link>
-                <Link to={`/project/update/${project.project_id}`}>
-                  <Button variant="success">Edit</Button>
-                </Link>
                 <Link to={`/createProject`}>
                   <Button
                     variant="danger"
