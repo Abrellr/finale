@@ -22,11 +22,6 @@ export default function Navigation() {
                 My Projects
               </Nav.Link>
             </NavLink>
-            <NavLink to="/project/today">
-              <Nav.Link id="nav" href="#today">
-                Today
-              </Nav.Link>
-            </NavLink>
             <NavLink to="/">
               <Nav.Link id="nav" href="#landing">
                 Log out
