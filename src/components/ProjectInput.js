@@ -3,23 +3,27 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row } from "react-bootstrap";
+import {useParams} from "react-router-dom"
 import "./ProjectInput.scss";
 
-export default function ProjectInput({ users }) {
+export default function ProjectInput({ users, setUsers }) {
   console.log(users)
 
+  const { id } = useParams()
   const [projectName, setProjectName] = useState("");
   const [projectDate, setProjectDate] = useState("");
 
   const handleCreate = (e) => {
+    
     e.preventDefault();
     axios
       .post("/projects/", {
         project_name: projectName,
         project_create_at: projectDate,
+        //user_id: setUsers.find(user => user.user_id === parseInt(id, 10)),
       })
       .then((response) => {
-        //const data = response.data;
+        const data = response.data;
         alert(
           "Project creation was successful. Click on project to start work"
         );

@@ -28,7 +28,7 @@ function App() {
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
   const [users, setUsers] = useState()
-
+  const [projectID, setProjectID] = useState(null)
   const [quotes, setQuotes] = useState([]);
   const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(null);
 
@@ -84,15 +84,18 @@ function App() {
   //get all tasks (from projects/one specific project)
   
   useEffect(() => {
+    
     const getTasks = () => {
       //fetch(`/tasks/`)
-      fetch(`/tasks/project/${taskQuery}`)
+      fetch(`/tasks/project/${projectID}`)
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))
     }
-    getTasks();
-  }, [taskQuery]);
+    if(projectID) {
+      getTasks()
+    };
+  }, [projectID]);
   
 
 
@@ -106,11 +109,11 @@ function App() {
           )}/> 
           <Route path="/project/:id" 
           render={(props) => (
-            <ProjectDetail users={users} projects={projects} setTasks={setTasks} tasks={tasks} {...props} />
+            <ProjectDetail users={users} projects={projects} setTasks={setTasks} tasks={tasks} setProjectID={setProjectID} {...props} />
           )}/>  
           <Route path="/createProject" 
           render={(props) => (
-            <CreateProject users={users} projects={projects} setProjects={setProjects} {...props} />
+            <CreateProject users={users} projects={projects} setProjects={setProjects} setUsers={setUsers} {...props} />
           )}/>
           <Route path="/login" 
           render={() => (
