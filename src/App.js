@@ -23,12 +23,11 @@ const USER_INIT_QUERY = 2;
 function App() {
 
   const [projectQuery, setProjectQuery] = useState(PROJECT_INIT_QUERY)
-  const [taskQuery, setTaskQuery] = useState(TASK_INIT_QUERY)
   const [getUsers, setGetUser] = useState(USER_INIT_QUERY)
   const [projects, setProjects] = useState(null)
   const [tasks, setTasks] = useState(null)
-  const [users, setUsers] = useState()
-  const [projectID, setProjectID] = useState(20)
+  const [users, setUsers] = useState(null)
+  const [projectID, setProjectID] = useState(TASK_INIT_QUERY)
   const [quotes, setQuotes] = useState([]);
   const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(null);
 
