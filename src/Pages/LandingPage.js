@@ -14,9 +14,9 @@ export default function LandingPage({ assignNewQuoteIndex, selectedQuote }) {
           <Card className="motivation text-center" style={{backgroundColor: "transparent"}}>
             <Card.Body>
               <Card.Text style={{border: "none"}}>
-              <h4 style={{color: "#100E14", fontWeight: "900"}}>{selectedQuote.quote}</h4>
+              <h4 style={{color: "#100E14", fontWeight: "700"}}>{selectedQuote.quote}</h4>
               </Card.Text>
-              <Button variant="link" onClick={assignNewQuoteIndex}>New quote</Button>
+              <Button variant="link" style={{color: "#100E14"}} onClick={assignNewQuoteIndex}>New quote</Button>
             </Card.Body>
           </Card>
           </Container>
