@@ -59,6 +59,7 @@ const { id } = useParams()
               type="text"
               placeholder="Your task"
               maxLength="30"
+              autoComplete="off"
               pattern="[a-zA-Z0-9]+"
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}

@@ -41,6 +41,7 @@ export default function LoginForm(props) {
                 <Form.Control
                   type="text"
                   placeholder="Enter username"
+                  autoComplete="off"
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
@@ -51,6 +52,7 @@ export default function LoginForm(props) {
                 <Form.Control
                   type="password"
                   placeholder="Enter password"
+                  autoComplete="off"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
