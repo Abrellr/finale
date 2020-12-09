@@ -3,7 +3,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { Container, Row, Col } from "react-bootstrap";
-import {useParams, useHistory} from "react-router-dom"
+import {useParams} from "react-router-dom"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./TaskInput.scss";
@@ -11,13 +11,11 @@ import "./TaskInput.scss";
 export default function TaskInput({ projects, setTasks, tasks, setProjects }) {
 console.log(tasks)
 const { id } = useParams()
-const history = useHistory()
 
   const [taskName, setTaskName] = useState("");
   const [totalTime, setTotalTime] = useState();
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  //const [selectedProjectId, setSelectedProjectId] = useState(`${projects.project_id}`)
   
 
   const handleCreate = (e) => {
@@ -35,10 +33,10 @@ const history = useHistory()
       })
       .then((response) => {
         console.log(response.data);
-        //const data = response.data;
-        const newObject = tasks.concat(response.data)
-        console.log(newObject)
-        setTasks(newObject)
+        const data = response.data;
+        // const newObject = tasks.concat(response.data)
+        // console.log(newObject)
+        // setTasks(newObject)
         alert('Task creation successful.');
         window.open(`/project/${id}`, "_self") 
       })
