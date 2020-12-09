@@ -1,6 +1,5 @@
 import React from "react";
 import { Table, Button, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { CSVLink } from "react-csv";
 import "./TaskTable.scss";
 
@@ -23,6 +22,7 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
       )
       .catch((err) => console.log(err.message));
   };
+
 
   return (
     <Container
@@ -53,11 +53,7 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
                     <td>{task.task_name}</td>
                     <td>{task.start_time}</td>
                     <td>{task.end_time}</td>
-                    <td>
-                      {/* {task.total_time.toLocalTimeString()} */}
-                      {task.total_time.hours}hr(s) {task.total_time.minutes}
-                      minutes
-                    </td>
+                    <td>{task.total_time ? task.total_time.hours : '0' } hrs {task.total_time ? task.total_time.minutes : '0'} minutes</td>
                     <td style={{ display: "flex", flexDirection: "row" }}>
                       <Button variant="danger" onClick={() => deleteTask(task)}>
                         Del
@@ -70,7 +66,8 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
           })}
       </Table>
       <Row>
-        <CSVLink
+
+        {tasks && tasks.length > 0 && <CSVLink
           filename={"task.csv"}
           color="primary"
           style={{ float: "left", marginLeft: "1em" }}
@@ -78,12 +75,18 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
           data={tasks && tasks.map(task => {
             return{
               ...task,
-              total_time: `${task.total_time.hours || '0'} hours, ${task.total_time.minutes || '0'} minutes, ${task.total_time.seconds || '0'} seconds`
+              total_time: `${task.total_time ? task.total_time.hours : '00' } hours ${task.total_time ? task.total_time.minutes : '00'} minutes`
             };
           })}
+          
+          
+          // {tasks.map(task => {
+          //   task.time = ` ${task.total_time ? task.total_time.hours : '0'}  hrs ${task.total_time ? task.total_time.minutes : '0'}`;
+          //   return task;
+          // })}
         >
           Download CSV
-        </CSVLink>
+        </CSVLink>}
       </Row>
     </Container>
   );

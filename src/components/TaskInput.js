@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./TaskInput.scss";
 
-export default function TaskInput({ projects, tasks, setProjects }) {
+export default function TaskInput({ projects, setTasks, tasks, setProjects }) {
 console.log(tasks)
 const { id } = useParams()
 
@@ -16,7 +16,6 @@ const { id } = useParams()
   const [totalTime, setTotalTime] = useState();
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
-  //const [selectedProjectId, setSelectedProjectId] = useState(`${projects.project_id}`)
   
 
   const handleCreate = (e) => {
@@ -33,10 +32,13 @@ const { id } = useParams()
         project_id: id,
       })
       .then((response) => {
-        console.log(response);
-        //const data = response.data;
-        alert("Task creation was successful. Click on project to start work");
-        window.open(`/createProject`, "_self"); // with '_self' page will open in current tab
+        console.log(response.data);
+        const data = response.data;
+        // const newObject = tasks.concat(response.data)
+        // console.log(newObject)
+        // setTasks(newObject)
+        alert('Task creation successful.');
+        window.open(`/project/${id}`, "_self") 
       })
       .catch((error) => {
         return alert(
@@ -59,6 +61,7 @@ const { id } = useParams()
               type="text"
               placeholder="Your task"
               maxLength="30"
+              autoComplete="off"
               pattern="[a-zA-Z0-9]+"
               value={taskName}
               onChange={(e) => setTaskName(e.target.value)}

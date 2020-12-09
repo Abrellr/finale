@@ -25,9 +25,7 @@ function App() {
   const [projectQuery, setProjectQuery] = useState(PROJECT_INIT_QUERY)
   const [getUsers, setGetUser] = useState(USER_INIT_QUERY)
   const [projects, setProjects] = useState(null)
-  const [tasks, setTasks] = useState(null)
   const [users, setUsers] = useState(null)
-  const [projectID, setProjectID] = useState(TASK_INIT_QUERY)
   const [quotes, setQuotes] = useState([]);
   const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(null);
 
@@ -80,21 +78,7 @@ function App() {
     .catch((err) => console.log(err))
   }, [projectQuery])
 
-  //get all tasks (from projects/one specific project)
   
-  useEffect(() => {
-    
-    const getTasks = () => {
-      //fetch(`/tasks/`)
-      fetch(`/tasks/project/${projectID}`)
-			.then((res) => res.json())
-      .then((data) => setTasks(data))
-      .catch((err) => console.log(err))
-    }
-    if(projectID) {
-      getTasks()
-    };
-  }, [projectID]);
   
 
 
@@ -108,7 +92,7 @@ function App() {
           )}/> 
           <Route path="/project/:id" 
           render={(props) => (
-            <ProjectDetail users={users} projects={projects} setTasks={setTasks} tasks={tasks} setProjectID={setProjectID} {...props} />
+            <ProjectDetail users={users} projects={projects}  {...props} />
           )}/>  
           <Route path="/createProject" 
           render={(props) => (

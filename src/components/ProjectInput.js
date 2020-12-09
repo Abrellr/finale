@@ -9,7 +9,7 @@ import "./ProjectInput.scss";
 export default function ProjectInput({ users, setUsers }) {
   console.log(users)
 
-  const { id } = useParams()
+  //const { id } = useParams()
   const [projectName, setProjectName] = useState("");
   const [projectDate, setProjectDate] = useState("");
 
@@ -60,6 +60,7 @@ export default function ProjectInput({ users, setUsers }) {
                       placeholder="New project name"
                       maxLength="25"
                       pattern="[a-zA-Z0-9]+"
+                      autoComplete="off"
                       value={projectName}
                       onChange={(e) => setProjectName(e.target.value)}
                       required
