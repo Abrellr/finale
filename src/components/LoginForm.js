@@ -15,14 +15,13 @@ export default function LoginForm(props) {
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("/users/", {
+      .post("/auth/login", {
         username: username,
         password: password,
       })
       .then((response) => {
         const data = response.data;
-        // This method triggers the onLoggedIn method in MainView and updates user state
-        props.onLoggedIn(data);
+        console.log(data)
       })
       .catch((error) => {
         return alert("Invalid username or password");
@@ -59,15 +58,17 @@ export default function LoginForm(props) {
                 />
               </Form.Group>
               <Row className="justify-content-center">
+                <Link to={"/createProject"}> 
                 <Button
                   className="login-button mr-3 ml-3"
                   variant="primary"
                   type="submit"
                   block
-                  onClick={handleLogin}
+                  //onClick={handleLogin}
                 >
                   Login
                 </Button>
+                </Link>
               </Row>
             </Form>
           </Container>
