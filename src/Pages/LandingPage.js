@@ -29,6 +29,11 @@ export default function LandingPage({ assignNewQuoteIndex, selectedQuote }) {
             </Button>
           </Link>
           <br />
+          <Link to={"/createProject"}> 
+            <Button variant="primary" style={{ width: "200px" }}>
+              Try demo version
+            </Button>
+          </Link>
         </TimeStamp>
       </Background>
     </div>

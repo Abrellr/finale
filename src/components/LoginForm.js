@@ -58,7 +58,6 @@ export default function LoginForm(props) {
                 />
               </Form.Group>
               <Row className="justify-content-center">
-                <Link to={"/createProject"}> 
                 <Button
                   className="login-button mr-3 ml-3"
                   variant="primary"
@@ -68,7 +67,6 @@ export default function LoginForm(props) {
                 >
                   Login
                 </Button>
-                </Link>
               </Row>
             </Form>
           </Container>
