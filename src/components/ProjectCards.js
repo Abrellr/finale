@@ -11,7 +11,7 @@ export default function ProjectCards({ projects, setProjects }) {
 
   const deleteProject = ({ project_id }) => {
     if(project_id){
-    fetch(`/projects/${project_id}`, {
+    fetch(`/api/projects/${project_id}`, {
       method: "DELETE",
     })
       .then((res) => {
