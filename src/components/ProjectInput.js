@@ -19,7 +19,7 @@ export default function ProjectInput({ users, setUsers }) {
     // }
     e.preventDefault();
     axios
-      .post("/projects/", {
+      .post("/api/projects/", {
         project_name: projectName,
         project_create_at: projectDate,
         user_id: USER_INIT_QUERY,

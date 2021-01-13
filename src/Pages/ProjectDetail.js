@@ -15,7 +15,7 @@ export default function ProjectDetail({ projects, setProjects }) {
   useEffect(() => {
     const getTasks = () => {
       //fetch(`/tasks/`)
-      fetch(`/tasks/project/${id}`)
+      fetch(`/api/tasks/project/${id}`)
 			.then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((err) => console.log(err))

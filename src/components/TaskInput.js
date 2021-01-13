@@ -24,7 +24,7 @@ const { id } = useParams()
     }
     e.preventDefault();
     axios
-      .post("/tasks/", {
+      .post("/api/tasks/", {
         task_name: taskName,
         start_time: startTime,
         end_time: endTime,

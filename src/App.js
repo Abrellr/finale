@@ -62,7 +62,7 @@ function App() {
 
   //get one specific user
   useEffect(() => {
-    fetch(`/users/${getUsers}`)
+    fetch(`/api/users/${getUsers}`)
     .then((res) => res.json())
     .then((data) => setUsers(data))
     .catch((err) => console.log(err))
@@ -72,7 +72,7 @@ function App() {
   useEffect(() => {
     //fetch(`/projects/`)
     const getProject = () => {
-    fetch(`/projects/user/${projectQuery}`)
+    fetch(`/api/projects/user/${projectQuery}`)
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
