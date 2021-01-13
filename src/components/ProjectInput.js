@@ -9,18 +9,20 @@ import "./ProjectInput.scss";
 export default function ProjectInput({ users, setUsers }) {
   console.log(users)
 
-  //const { id } = useParams()
-  const [projectName, setProjectName] = useState("");
-  const [projectDate, setProjectDate] = useState("");
+  const USER_INIT_QUERY = 2;
+  const [projectName, setProjectName] = useState(null);
+  const [projectDate, setProjectDate] = useState(null);
 
   const handleCreate = (e) => {
-    
+    // if(handleCreate) {
+    //   setUsers && setUsers.filter((user) => user.user_id === parseInt(id, 10))
+    // }
     e.preventDefault();
     axios
       .post("/projects/", {
         project_name: projectName,
         project_create_at: projectDate,
-        //user_id: setUsers.find(user => user.user_id === parseInt(id, 10)),
+        user_id: USER_INIT_QUERY,
       })
       .then((response) => {
         const data = response.data;

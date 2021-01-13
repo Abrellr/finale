@@ -12,9 +12,7 @@ export default function ProjectDetail({ projects, setProjects }) {
 
 
   //get all tasks (from projects/one specific project)
-  
   useEffect(() => {
-    
     const getTasks = () => {
       //fetch(`/tasks/`)
       fetch(`/tasks/project/${id}`)

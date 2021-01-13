@@ -23,11 +23,11 @@ export default function LandingPage({ assignNewQuoteIndex, selectedQuote }) {
           <br />
           <img src={logo} alt="logo" style={{ width: "300px" }}></img>
           <br />
-          <Link to="/login">
+          {/* <Link to="/login">
             <Button variant="primary" style={{ width: "200px" }}>
               Log In
             </Button>
-          </Link>
+          </Link> */}
           <br />
           <Link to={"/createProject"}> 
             <Button variant="primary" style={{ width: "200px" }}>

@@ -16,8 +16,8 @@ import ProjectDetail from './Pages/ProjectDetail';
 import SignUp from './components/SignUp'
 import EditProject from './Pages/EditProject'
 
+
 const PROJECT_INIT_QUERY = 2;
-const TASK_INIT_QUERY = 20;
 const USER_INIT_QUERY = 2;
 
 function App() {
@@ -28,7 +28,6 @@ function App() {
   const [users, setUsers] = useState(null)
   const [quotes, setQuotes] = useState([]);
   const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(null);
-
 
   useEffect(() =>{   
     fetch("https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json")
@@ -69,16 +68,19 @@ function App() {
     .catch((err) => console.log(err))
   }, [getUsers])
 
-  //get all projects (from users/one specific user)
+  //get all projects (from one specific user)
   useEffect(() => {
-    fetch(`/projects/`)
-    //fetch(`/projects/user/${projectQuery}`)
+    //fetch(`/projects/`)
+    const getProject = () => {
+    fetch(`/projects/user/${projectQuery}`)
     .then((res) => res.json())
     .then((data) => setProjects(data))
     .catch((err) => console.log(err))
-  }, [projectQuery])
-
-  
+  }
+  if(projectQuery) {
+    getProject()
+  };
+}, [projectQuery]);
   
 
 
