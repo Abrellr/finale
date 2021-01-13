@@ -62,7 +62,7 @@ function App() {
 
   //get one specific user
   useEffect(() => {
-    fetch(`/api/users/${getUsers}`)
+    fetch(`/users/${getUsers}`)
     .then((res) => res.json())
     .then((data) => setUsers(data))
     .catch((err) => console.log(err))

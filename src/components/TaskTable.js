@@ -8,7 +8,7 @@ export default function TaskTable({ tasks, projects, setTasks, match }) {
   console.log(projects);
 
   const deleteTask = ({ task_id }) => {
-    fetch(`/tasks/${task_id}`, {
+    fetch(`/api/tasks/${task_id}`, {
       method: "DELETE",
     })
       .then((resp) => {
