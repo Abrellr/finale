@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
 const Background = styled.div`
   background-image: url(${bgImage});
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
   width: 100vw;
   height: 100vh;
@@ -30,11 +31,4 @@ const TimeStamp = styled.div`
   flex-direction: column;
 `;
 
-
-
-export {
-  GlobalStyle,
-  Background,
-  TimeStamp
-
-};
+export { GlobalStyle, Background, TimeStamp };
